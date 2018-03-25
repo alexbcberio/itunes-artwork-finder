@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>API iTunes</title>
+
+    <script src="./sweetalert.min.js" charset="utf-8" defer></script>
+    <script src="./main.js" charset="utf-8" defer></script>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <h1 id="title">API de iTunes</h1>
+
+    <form class="" action="#" method="post" id="search-iTunes">
+        <input type="text" name="term" placeholder="Inserta aquí el término a buscar" autofocus autocomplete="off">
+
+        <input type="hidden" name="country" value="US">
+
+        <input type="hidden" name="entity" value="album">
+        <select name="entity">
+            <optgroup label="Movie">
+                <option value="movieArtist">Movie Artist</option>
+                <option value="movie">Movie</option>
+            </optgroup>
+
+            <optgroup label="Podcast">
+                <option value="podcastAuthor">Podcast Author</option>
+                <option value="podcast">Podcast</option>
+
+            </optgroup>
+
+            <optgroup label="Music">
+                <option value="musicArtist">Music Artist</option>
+                <option value="musicTrack">Music Track</option>
+                <option value="album" selected>Album</option>
+                <option value="musicVideo">Music Video</option>
+                <option value="mix">Mix</option>
+                <option value="song">Song</option>
+            </optgroup>
+
+            <optgroup label="Music Video">
+                <option value="musicArtist">Music Artist</option>
+                <option value="musicVideo">Music Video</option>
+            </optgroup>
+
+            <optgroup label="audiobook">
+                <option value="audiobookAuthor">Audiobook Author</option>
+                <option value="audiobook">Audiobook</option>
+            </optgroup>
+
+            <optgroup label="Short Film">
+                <option value="shortFilmArtist">Short Film Artist</option>
+                <option value="shortFilm">Short Film</option>
+            </optgroup>
+
+            <optgroup label="TV Show">
+                <option value="tvEpisode">TV Episode</option>
+                <option value="tvSeason">TV Season</option>
+            </optgroup>
+
+            <optgroup label="Software">
+                <option value="software">Software</option>
+                <option value="iPadSoftware">iPad Software</option>
+                <option value="macSoftware">mac Software</option>
+            </optgroup>
+
+            <optgroup label="eBook">
+                <option value="ebook">eBook</option>
+            </optgroup>
+
+            <optgroup label="all">
+                <option value="movie">Movie</option>
+                <option value="album">Album</option>
+                <option value="allArtist">All Artist</option>
+                <option value="podcast">Podcast</option>
+                <option value="musicVideo">Music Video</option>
+                <option value="mix">Mix</option>
+                <option value="audiobook">Audiobook</option>
+                <option value="tvSeason">TV Season</option>
+                <option value="allTrack">All Track</option>
+
+            </optgroup>
+        </select>
+
+        <button type="submit" name="button">
+            Buscar
+        </button>
+    </form>
+
+    <div class="hidden" id="scrollTop">
+        ↑
+    </div>
+
+    <div id="response">
+        <div class="hidden" id="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <noscript>
+            Vaya, parece que tienes JavaScript deshabilitado. Siento indicarte que esto no va a funcionar, si deseas utilizar esta aplicación deberás habilitarlo.
+        </noscript>
+    </div>
+
+</body>
+</html>
