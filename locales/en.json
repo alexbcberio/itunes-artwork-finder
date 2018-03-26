@@ -1,0 +1,40 @@
+{
+    "code": "en",
+    "language": "english",
+
+    "terms": {
+        "title": "iTunes API",
+
+        "search-iTunes-form": {
+            "term-placeholder": "Write here what you want to search for",
+            "country-code": "us",
+            "submit-text": "Search"
+        },
+
+        "iTunes-search": {
+            "errors": {
+                "exception": "There was an error making the request: %exceptionMsg%",
+                "httpError": "The server responded with a %httpStatus% status (%httpResponse%), try again later",
+
+                "no-network": {
+                    "title": "No network detected",
+                    "text": "Seems you have no internet access, connect and try again"
+                },
+                "no-term": {
+                    "title": "Term no specified",
+                    "text": "You must write something to search for"
+                },
+                "not-found": {
+                    "title": "No results found",
+                    "text": "We coulnd't find anything with the terms you used, revise for misspellings or try writing it with similar words"
+                }
+            },
+
+            "download-image": {
+                "standard-resolution": "Standard resolution",
+                "hight-resolution": "Hight resolution"
+            }
+
+        }
+    }
+}

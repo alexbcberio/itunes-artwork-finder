@@ -1,0 +1,40 @@
+{
+    "code": "es",
+    "language": "spanish",
+
+    "terms": {
+        "title": "API de iTunes",
+
+        "search-iTunes-form": {
+            "term-placeholder": "Inserta aquí el término a buscar",
+            "country-code": "es",
+            "submit-text": "Buscar"
+        },
+
+        "iTunes-search": {
+            "errors": {
+                "exception": "Ocurrió un error al realizar la búsqueda: %exceptionMsg%",
+                "httpError": "El servidor respondió con un el estado %httpStatus% (%httpResponse%), vuelve a intentarlo más tarde",
+
+                "no-network": {
+                    "title": "Conexión de red no detectada",
+                    "text": "Parece que no estás conectado a internet, por favor conectate y vuelve a intentarlo"
+                },
+                "no-term": {
+                    "title": "Término no especificado",
+                    "text": "Has de indicar algo para realizar la búsqueda"
+                },
+                "not-found": {
+                    "title": "Sin resultados",
+                    "text": "No se han encontrado resultados con el termino indicado, revisa la ortografía o prueba con otras palabras"
+                }
+            },
+
+            "download-image": {
+                "standard-resolution": "Resolución Estandar",
+                "hight-resolution": "Alta Resolución"
+            }
+
+        }
+    }
+}

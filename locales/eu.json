@@ -1,0 +1,40 @@
+{
+    "code": "eu",
+    "language": "basque",
+
+    "terms": {
+        "title": "iTunesko APIa",
+
+        "search-iTunes-form": {
+            "term-placeholder": "Jarri hemen bilatu nahiko terminoa",
+            "country-code": "es",
+            "submit-text": "Bilatu"
+        },
+
+        "iTunes-search": {
+            "errors": {
+                "exception": "Errore bat gertaratu da bilaketa egiterakoan: %exceptionMsg%",
+                "httpError": "Zerbitzariak %httpStatus% (%httpResponse%) estatuarekin erantzun du, saia zaitez geroago",
+
+                "no-network": {
+                    "title": "Sare konexioa ez aurkitua",
+                    "text": "Internetera ez zaudela konektatuta dirudi, konekta zaitez eta saia zaitez geroago"
+                },
+                "no-term": {
+                    "title": "Termino hutsa",
+                    "text": "Zeozer jarri behar duzu gu bilatzeko"
+                },
+                "not-found": {
+                    "title": "Emaitza gabe",
+                    "text": "Ez dugu ezer aurkitu idatziko terminoarekin, berrikusi ondo idatzia dagon eta bestela froga ezazu beste hitzekin"
+                }
+            },
+
+            "download-image": {
+                "standard-resolution": "Bereizmen estandarra",
+                "hight-resolution": "Bereizmen handia"
+            }
+
+        }
+    }
+}
