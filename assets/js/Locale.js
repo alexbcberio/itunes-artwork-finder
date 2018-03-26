@@ -58,7 +58,7 @@ class Locale {
 
     getTerms() {
         return new Promise((resolve) => {
-            fetch("/locales/" + this.code + ".json")
+            fetch("./locales/" + this.code + ".json")
             .then(response => {
                 if (response.ok) {
                     return response.text()
