@@ -31,6 +31,7 @@ body {
   height: 1rem;
   background-color: #546e7a;
   animation: grow 1s ease-in-out infinite;
+  margin: 0 .1rem;
 }
 
 #loader span:nth-child(2){
@@ -76,16 +77,8 @@ input:focus,
 button:focus,
 select:focus {
     outline: 0;
-}
-
-#title {
-    text-align: center;
-    font-size: 2rem;
-}
-
-#search-iTunes {
-    width: 90%;
-    margin: auto;
+    background: transparent;
+    border-color: #546e7a;
 }
 
 input,
@@ -98,15 +91,28 @@ select {
     border-bottom: .1rem solid black;
 }
 
-input:focus,
-select:focus {
-    background: transparent;
-    border-color: #546e7a;
-}
-
 button {
     border: .1rem solid black;
     border-radius: .3rem;
+}
+
+#title {
+    text-align: center;
+    font-size: 2rem;
+}
+
+#changeLocale {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    width: 6rem !important;
+    border: .1rem solid black;
+    padding: 0;
+}
+
+#search-iTunes {
+    width: 90%;
+    margin: auto;
 }
 
 [type="submit"]:focus,
@@ -228,4 +234,21 @@ noscript {
     border-radius: .3rem;
     background-color: #f8d7da;
     color: #721c24;
+}
+
+footer {
+    text-align: center;
+    background-color: #546e7a;
+    color: white;
+    padding: 2.7rem 0 1.5rem 0;
+    border-top: .15em solid black;
+}
+
+footer a {
+    text-decoration: underline;
+    color: white;
+}
+
+footer a:hover {
+    text-decoration: none;
 }
