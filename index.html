@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es"  data-locale-position="lang" data-locale-value="code">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>API iTunes</title>
+    <title data-locale-position="text" data-locale-value="title">iTunes API</title>
 
-    <script src="./sweetalert.min.js" charset="utf-8" defer></script>
-    <script src="./main.js" charset="utf-8" defer></script>
-    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+
+    <script src="./assets/js/main.js" charset="utf-8" defer></script>
+    <script src="./assets/js/Locale.js" charset="utf-8" defer></script>
+    <script src="./assets/js/iTunesAPI.js" charset="utf-8" defer></script>
+
+    <script src="./assets/lib/sweetalert.min.js" charset="utf-8" defer></script>
 </head>
 <body>
-    <h1 id="title">API de iTunes</h1>
+    <h1 id="title" data-locale-position="text" data-locale-value="title">API de iTunes</h1>
 
-    <form class="" action="#" method="post" id="search-iTunes">
-        <input type="text" name="term" placeholder="Inserta aquí el término a buscar" autofocus autocomplete="off">
+    <form action="#" method="post" id="search-iTunes">
+        <input type="text" name="term" placeholder="Write here what you want to search for" autofocus autocomplete="off" data-locale-position="placeholder" data-locale-value="search-iTunes-form.term-placeholder">
 
-        <input type="hidden" name="country" value="US">
+        <input type="hidden" name="country" value="us" data-locale-position="value" data-locale-value="search-iTunes-form.country-code">
 
-        <input type="hidden" name="entity" value="album">
         <select name="entity">
             <optgroup label="Movie">
                 <option value="movieArtist">Movie Artist</option>
@@ -84,8 +87,8 @@
             </optgroup>
         </select>
 
-        <button type="submit" name="button">
-            Buscar
+        <button type="submit" name="submit" data-locale-position="text" data-locale-value="search-iTunes-form.submit-text">
+            Search
         </button>
     </form>
 
@@ -102,9 +105,13 @@
         </div>
 
         <noscript>
-            Vaya, parece que tienes JavaScript deshabilitado. Siento indicarte que esto no va a funcionar, si deseas utilizar esta aplicación deberás habilitarlo.
+            Oops, it seems you have JavaScript disabled on your browser. Without it this won't do anything, you will have to enable it to use the service.
         </noscript>
     </div>
+
+    <footer>
+        Made by <a href="https://github.com/alexbcberio">alexbcberio</a>, view the <a href="https://github.com/alexbcberio/itunes-artwork-finder">source code</a> on GitHub
+    </footer>
 
 </body>
 </html>
