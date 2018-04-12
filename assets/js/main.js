@@ -5,6 +5,16 @@ let locale,
     form;
 
 function init() {
+    if (!isSupported()) {
+        swal({
+            title: "Unsupported browser",
+            text: "You browser does not support some of the functions, please consider upgrading it or changing to a more modern one",
+            icon: "error"
+        });
+        
+        return;
+    }
+
     locale = new Locale(Locale.firstMatchLocale);
     console.info("Selected \"%s\" locale.", Locale.firstMatchLocale);
 
@@ -57,4 +67,25 @@ function createChangeLang() {
     list.addEventListener("change", function () {
         locale = new Locale(this.value);
     })
+}
+
+function isSupported() {
+    try {
+        let requires = [
+            FormData,
+            new FormData(document.getElementById("search-iTunes")).get("term"),
+            Promise,
+            fetch,
+        ];
+
+        for (let i = 0; i < requires.length; i++) {
+            if (typeof requires[i] === "undefined") {
+                return false;
+            }
+        }
+        return true;
+
+    } catch (e) {
+        return false;
+    }
 }
