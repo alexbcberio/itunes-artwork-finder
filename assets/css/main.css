@@ -74,7 +74,7 @@ select {
 }
 
 input:focus,
-button:focus:not(".swal-button"),
+button:focus:not(.swal-button),
 select:focus {
     outline: 0;
     background: transparent;
