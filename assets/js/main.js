@@ -11,7 +11,7 @@ function init() {
             text: "You browser does not support some of the functions, please consider upgrading it or changing to a more modern one",
             icon: "error"
         });
-        
+
         return;
     }
 
@@ -22,8 +22,31 @@ function init() {
 
     form = document.getElementById("search-iTunes");
     form.addEventListener("submit", function (e) {
+        let formData = new FormData(this)
+
         e.preventDefault();
-        api.search(new FormData(this));
+
+        api.search(formData);
+
+        history.pushState({
+            "term": formData.get("term"),
+            "country": formData.get("country"),
+            "entity": formData.get("entity")
+        }, document.title);
+    });
+
+    window.addEventListener("popstate", function (event) {
+        let data = event.state;
+        let formData = new FormData();
+
+        for (let input in data) {
+            let value = data[input];
+            formData.set(input, value);
+            document.getElementsByName(input)[0].value = value;
+        }
+
+        api.search(formData);
+
     });
 
     initScrollTop();
