@@ -164,7 +164,8 @@ class iTunesAPI {
         let mediumDownloadLink = document.createElement("a");
         mediumDownloadLink.classList.add("albumart-download-link");
         mediumDownloadLink.href = collectionElement.artworkUrl60.replace("60x60", "500x500");
-        mediumDownloadLink.setAttribute("download", "download");
+        mediumDownloadLink.target = "_blank";
+        mediumDownloadLink.setAttribute("download", "medium.jpg");
         mediumDownloadLink.setAttribute("data-locale-position", "text");
         mediumDownloadLink.setAttribute("data-locale-value", "iTunes-search.download-image.standard-resolution");
         mediumDownloadLink.innerText = locale.get("iTunes-search.download-image.standard-resolution");
@@ -172,7 +173,8 @@ class iTunesAPI {
         let largeDownloadLink = document.createElement("a");
         largeDownloadLink.classList.add("albumart-download-link");
         largeDownloadLink.href = collectionElement.artworkUrl60.replace("60x60", "5000x5000");
-        largeDownloadLink.setAttribute("download", "download");
+        largeDownloadLink.target = "_blank";
+        largeDownloadLink.setAttribute("download", "large.jpg");
         largeDownloadLink.setAttribute("data-locale-position", "text");
         largeDownloadLink.setAttribute("data-locale-value", "iTunes-search.download-image.hight-resolution");
         largeDownloadLink.innerText = locale.get("iTunes-search.download-image.hight-resolution");
