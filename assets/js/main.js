@@ -22,7 +22,7 @@ function init() {
 
     form = document.getElementById("search-iTunes");
     form.addEventListener("submit", function (e) {
-        let formData = new FormData(this)
+        let formData = new FormData(this);
 
         e.preventDefault();
 
@@ -32,7 +32,7 @@ function init() {
             "term": formData.get("term"),
             "country": formData.get("country"),
             "entity": formData.get("entity")
-        }, document.title);
+        }, document.title, `?q=${formData.get("term")}&entity=${formData.get("entity")}`);
     });
 
     window.addEventListener("popstate", function (event) {
@@ -48,6 +48,40 @@ function init() {
         api.search(formData);
 
     });
+
+    if (location.search) {
+        let params = location.search.substr(1).split("&");
+
+        let formElement = document.getElementById("search-iTunes");
+        let formData = new FormData();
+        formData.set("country", "es");
+        formData.set("entity", "album");
+
+        for (let param of params) {
+            let data = param.split("=");
+
+            if (data.length == 2) {
+                switch (data[0]) {
+                    case "q":
+                        formData.set("term", data[1]);
+                        formElement.querySelector("[name=term]").value = data[1];
+                        break;
+                    case "entity":
+                        formData.set("entity", data[1]);
+                        formElement.querySelector("[name=entity]").value = data[1];
+                        break;
+                    case "country":
+                        formData.set("country", data[1]);
+                        formElement.querySelector("[name=country]").value = data[1];
+                        break;
+                }
+            }
+        }
+
+        if (formData.get("term"))
+
+        api.search(formData);
+    }
 
     initScrollTop();
     createChangeLang();
