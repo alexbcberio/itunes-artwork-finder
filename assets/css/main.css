@@ -60,6 +60,10 @@ body {
  * app styles
  */
 
+select {
+    -webkit-appearance: none;
+}
+
 input,
 button,
 select {
@@ -107,7 +111,7 @@ button {
     right: .5rem;
     width: 6rem !important;
     border: .1rem solid black;
-    padding: 0;
+    padding: .25rem;
 }
 
 #search-iTunes {
@@ -251,4 +255,39 @@ footer a {
 
 footer a:hover {
     text-decoration: none;
+}
+
+/*
+ * dark theme
+ */
+
+@media (prefers-color-scheme: dark) {
+
+    body {
+        background-color: #333333;
+    }
+
+    body,
+    input,
+    button,
+    select,
+    #changeLocale,
+    #response .collectionElement .albumart-download-link {
+        color: #eeeeee;
+        border-color: #eeeeee;
+        background-color: #333333;
+    }
+
+    select * {
+        background-color: #333333;
+    }
+
+    #response .collectionElement .albumart:hover {
+        box-shadow: 0 0 0.5rem #eeeeee;
+    }
+
+    footer {
+        border-color: #eeeeee;
+    }
+
 }
