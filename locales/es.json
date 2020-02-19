@@ -8,6 +8,7 @@
         "search-iTunes-form": {
             "term-placeholder": "Inserta aquí el término a buscar",
             "country-code": "es",
+            "result-limit": "Max resultados",
             "submit-text": "Buscar"
         },
 

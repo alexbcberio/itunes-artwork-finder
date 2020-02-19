@@ -23,6 +23,7 @@ function init() {
     form = document.getElementById("search-iTunes");
     form.addEventListener("submit", function (e) {
         let formData = new FormData(this);
+        formData.set("media", document.querySelector("#search-iTunes [name=entity]").selectedOptions[0].parentNode.getAttribute("label").toLowerCase());
 
         e.preventDefault();
 
@@ -31,8 +32,10 @@ function init() {
         history.pushState({
             "term": formData.get("term"),
             "country": formData.get("country"),
-            "entity": formData.get("entity")
-        }, document.title, `?q=${formData.get("term")}&entity=${formData.get("entity")}`);
+            "media": formData.get("media"),
+            "entity": formData.get("entity"),
+            "limit": isNaN(formData.get("limit")) ? 50 : Math.max(Math.min(formData.get("limit"), 200), 1)
+        }, document.title, `?q=${formData.get("term")}&country=${formData.get("country")}&entity=${formData.get("entity")}&limit=${formData.get("limit")}`);
     });
 
     window.addEventListener("popstate", function (event) {
@@ -56,6 +59,7 @@ function init() {
         let formData = new FormData();
         formData.set("country", "es");
         formData.set("entity", "album");
+        formData.set("limit", 50);
 
         for (let param of params) {
             let data = param.split("=");
@@ -64,7 +68,10 @@ function init() {
                 switch (data[0]) {
                     case "q":
                         formData.set("term", data[1]);
-                        formElement.querySelector("[name=term]").value = data[1];
+                        formElement.querySelector("[name=term]").value = unescape(data[1]);
+                        break;
+                    case "media":
+                        formData.set("media", data[1]);
                         break;
                     case "entity":
                         formData.set("entity", data[1]);
@@ -73,6 +80,11 @@ function init() {
                     case "country":
                         formData.set("country", data[1]);
                         formElement.querySelector("[name=country]").value = data[1];
+                        break;
+                    case "limit":
+                        let limit = isNaN(data[1]) ? 50 : Math.max(Math.min(data[1], 200), 1);
+                        formData.set("limit", limit);
+                        formElement.querySelector("[name=limit]").value = limit;
                         break;
                 }
             }

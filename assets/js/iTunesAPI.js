@@ -107,10 +107,7 @@ class iTunesAPI {
 
     fetch(formData) {
         return new Promise(function (resolve, reject) {
-            let URI = iTunesAPI.apiUrl + "?"
-                + "term=" + formData.get("term")
-                + "&country=" + formData.get("country")
-                + "&entity=" + formData.get("entity");
+            let URI = `${iTunesAPI.apiUrl}?term=${formData.get("term")}&country=${formData.get("country")}&media=${formData.get("media")}&entity=${formData.get("entity")}&limit=${formData.get("limit")}`;
 
             fetch(URI)
             .then(response => {

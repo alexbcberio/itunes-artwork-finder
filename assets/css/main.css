@@ -119,6 +119,19 @@ button {
     margin: auto;
 }
 
+.inline {
+    display: flex;
+    justify-content: space-between;
+}
+
+#search-iTunes .inline select {
+    width: calc(100% - 7rem);
+}
+
+#search-iTunes .inline input {
+    width: 5rem;
+}
+
 [type="submit"]:focus,
 [type="submit"]:hover {
     background-color: #546e7a;

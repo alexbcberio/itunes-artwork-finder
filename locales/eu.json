@@ -8,6 +8,7 @@
         "search-iTunes-form": {
             "term-placeholder": "Jarri hemen bilatu nahiko terminoa",
             "country-code": "es",
+            "result-limit": "Gehiengo emaitzak",
             "submit-text": "Bilatu"
         },
 
