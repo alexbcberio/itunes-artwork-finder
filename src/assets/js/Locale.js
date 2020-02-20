@@ -1,3 +1,13 @@
+import en from "../../locales/en.json";
+import es from "../../locales/es.json";
+import eu from "../../locales/eu.json";
+
+const langs = {
+    en: en,
+    es: es,
+    eu: eu
+}
+
 class Locale {
     static get availableLocales() {
         return [
@@ -37,6 +47,10 @@ class Locale {
     }
 
     constructor(localeCode) {
+        this.changeLocale(localeCode);
+    }
+
+    changeLocale(localeCode) {
         if (!localeCode) {
             throw new Error("Locale code must be specified");
 
@@ -53,11 +67,15 @@ class Locale {
             } else {
                 // ko
             }
-        });
+        })
     }
 
     getTerms() {
         return new Promise((resolve) => {
+            this.terms = langs[this.code];
+            resolve(true);
+            return;
+            console.log(langs[this.code]);
             fetch("./locales/" + this.code + ".json")
             .then(response => {
                 if (response.ok) {
@@ -133,3 +151,5 @@ class Locale {
         return term;
     }
 }
+
+export default new Locale(Locale.firstMatchLocale);

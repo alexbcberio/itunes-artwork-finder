@@ -1,4 +1,8 @@
-class iTunesAPI {
+import swal from "sweetalert";
+
+import locale from "./Locale";
+
+export default class iTunesAPI {
 
     static get apiUrl() {
         return "https://itunes.apple.com/search";

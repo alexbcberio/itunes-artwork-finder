@@ -1,7 +1,9 @@
+import locale from "./Locale";
+import iTunesAPI from "./iTunesAPI";
+
 document.addEventListener("DOMContentLoaded", init);
 
-let locale,
-    api,
+let api,
     form;
 
 function init() {
@@ -15,8 +17,7 @@ function init() {
         return;
     }
 
-    locale = new Locale(Locale.firstMatchLocale);
-    console.info("Selected \"%s\" locale.", Locale.firstMatchLocale);
+    console.info("Selected \"%s\" locale.", locale.constructor.firstMatchLocale);
 
     api = new iTunesAPI(document.getElementById("response"));
 
@@ -118,7 +119,7 @@ function initScrollTop() {
 function createChangeLang() {
     let list = document.createElement("select");
     list.id = "changeLocale";
-    let locales = Locale.availableLocales.sort();
+    let locales = locale.constructor.availableLocales.sort();
 
     locales.forEach(loc => {
         let option = document.createElement("option");
@@ -134,7 +135,7 @@ function createChangeLang() {
 
     document.body.appendChild(list);
     list.addEventListener("change", function () {
-        locale = new Locale(this.value);
+        locale.changeLocale(this.value);
     })
 }
 
