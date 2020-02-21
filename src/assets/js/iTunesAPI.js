@@ -1,22 +1,27 @@
 import swal from "sweetalert";
 
-import locale from "./Locale";
+let i18n;
+const locale = {
+    get: (term, vars) => {
+        term = term.split(".");
+        let msg = i18n.messages[i18n.locale].terms;
+
+        for (let t of term) {
+            msg = msg[t];
+        }
+
+        for (let v in vars) {
+            msg = msg.replace(`%${v}%`, vars[v]);
+        }
+
+        return msg;
+    }
+}
 
 export default class iTunesAPI {
 
     static get apiUrl() {
         return "https://itunes.apple.com/search";
-    }
-
-    static get loader() {
-        let loader = document.createElement("div");
-        loader.id = "loader";
-
-        for (let i = 0; i < 4; i++) {
-            loader.appendChild(document.createElement("span"));
-        }
-
-        return loader;
     }
 
     static get isOnline() {
@@ -50,18 +55,7 @@ export default class iTunesAPI {
         });
     }
 
-    static removeLoader() {
-        if (document.getElementById("loader")) {
-            document.getElementById("loader").remove();
-        }
-    }
-
-    constructor(target) {
-        this.target = target;
-    }
-
-    search(formData) {
-        this.target.innerHTML = null;
+    async search(formData) {
 
         if (!iTunesAPI.isOnline) {
             iTunesAPI.noNetwork();
@@ -70,16 +64,21 @@ export default class iTunesAPI {
             iTunesAPI.noTerm();
 
         } else {
-            this.target.appendChild(iTunesAPI.loader);
-            this.fetch(formData)
-            .then(json => this.showCollection(json))
-            .catch(error => iTunesAPI.prototype.manageApiError(error));
+            try {
+                let result = await this.fetch(formData);
+
+                return result;
+            } catch (e) {
+                this.manageApiError(e);
+            }
         }
     }
 
-    manageApiError(error) {
-        iTunesAPI.removeLoader();
+    constructor($i18n) {
+         i18n = $i18n;
+    }
 
+    manageApiError(error) {
         switch(error.type) {
             case "exception":
                 swal({
@@ -104,93 +103,30 @@ export default class iTunesAPI {
 
             default:
                 console.error(error);
-                break;
         }
 
     }
 
-    fetch(formData) {
-        return new Promise(function (resolve, reject) {
-            let URI = `${iTunesAPI.apiUrl}?term=${formData.get("term")}&country=${formData.get("country")}&media=${formData.get("media")}&entity=${formData.get("entity")}&limit=${formData.get("limit")}`;
+    async fetch(formData) {
+        let URI = `${iTunesAPI.apiUrl}?term=${formData.get("term")}&country=${formData.get("country")}&media=${formData.get("media")}&entity=${formData.get("entity")}&limit=${formData.get("limit")}`;
 
-            fetch(URI)
-            .then(response => {
-                if (response.ok) {
-                    response.text()
-                    .then(body => {
-                        resolve(JSON.parse(body));
-                    });
+        try {
+            let response = await fetch(URI);
 
-                } else {
-                    reject({
-                        type: "httpError",
-                        httpStatus: response.status,
-                        httpResponse: response.statusText
-                    });
-                }
+            if (response.ok) {
+                let json = await response.json();
 
-            }).catch(exception => {
-                reject({
-                    type: "exception",
-                    exception: exception
-                });
-            });
-        });
-    }
+                return json;
 
-    showCollection(collection) {
-        iTunesAPI.removeLoader();
-
-        if (collection.resultCount == 0) {
-            iTunesAPI.notFound();
-
-        } else {
-            collection.results.forEach(collectionElement => {
-                this.displayResult(collectionElement);
-            });
+            } else {
+                throw {
+                    type: "httpError",
+                    httpStatus: response.status,
+                    httpResponse: response.statusText
+                };
+            }
+        } catch (e) {
+            throw e;
         }
-    }
-
-    displayResult(collectionElement) {
-        let element = document.createElement("div");
-        element.classList.add("collectionElement");
-
-        let name = document.createElement("p");
-        name.classList.add("collection-name")
-        name.innerText = collectionElement.collectionName;
-
-        let downloadLinks = document.createElement("div");
-        downloadLinks.classList.add("albumart-download-links")
-
-        let mediumDownloadLink = document.createElement("a");
-        mediumDownloadLink.classList.add("albumart-download-link");
-        mediumDownloadLink.href = collectionElement.artworkUrl60.replace("60x60", "500x500");
-        mediumDownloadLink.target = "_blank";
-        mediumDownloadLink.setAttribute("download", "medium.jpg");
-        mediumDownloadLink.setAttribute("data-locale-position", "text");
-        mediumDownloadLink.setAttribute("data-locale-value", "iTunes-search.download-image.standard-resolution");
-        mediumDownloadLink.innerText = locale.get("iTunes-search.download-image.standard-resolution");
-
-        let largeDownloadLink = document.createElement("a");
-        largeDownloadLink.classList.add("albumart-download-link");
-        largeDownloadLink.href = collectionElement.artworkUrl60.replace("60x60", "5000x5000");
-        largeDownloadLink.target = "_blank";
-        largeDownloadLink.setAttribute("download", "large.jpg");
-        largeDownloadLink.setAttribute("data-locale-position", "text");
-        largeDownloadLink.setAttribute("data-locale-value", "iTunes-search.download-image.hight-resolution");
-        largeDownloadLink.innerText = locale.get("iTunes-search.download-image.hight-resolution");
-
-        let albumArt = document.createElement("img");
-        albumArt.classList.add("albumart");
-        albumArt.src = collectionElement.artworkUrl60.replace("60x60", "500x500");
-
-        element.appendChild(name);
-        element.appendChild(downloadLinks);
-        element.appendChild(albumArt);
-
-        downloadLinks.appendChild(mediumDownloadLink);
-        downloadLinks.appendChild(largeDownloadLink);
-
-        this.target.appendChild(element);
     }
 }

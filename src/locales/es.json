@@ -1,6 +1,7 @@
 {
     "code": "es",
-    "language": "spanish",
+    "countryCode": "es",
+    "language": "Español - Spanish",
 
     "terms": {
         "title": "API de iTunes",
@@ -33,7 +34,7 @@
 
             "download-image": {
                 "standard-resolution": "Resolución Estandar",
-                "hight-resolution": "Alta Resolución"
+                "high-resolution": "Alta Resolución"
             }
 
         }

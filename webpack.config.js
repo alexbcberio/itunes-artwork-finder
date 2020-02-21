@@ -2,6 +2,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
 const path = require("path");
 
@@ -9,7 +10,7 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     mode: "development",
-    entry: ["./src/index.js", "./src/assets/css/main.css"],
+    entry: ["./src/index.js", "./src/scss/main.scss"],
     output: {
         path: path.resolve(__dirname, "docs"),
         filename: "app.js"
@@ -34,6 +35,12 @@ module.exports = {
                     'css-loader',
                     'sass-loader',
                 ],
+            }, {
+                test: /\.vue$/i,
+                loader: 'vue-loader',
+                options: {
+                    hotReload: true
+                }
             }
         ],
     },
@@ -52,6 +59,12 @@ module.exports = {
             { from: "src/manifest.json" },
             { from: "src/assets/img/", to: "assets/img" }
         ]),
+        new VueLoaderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-    ]
+    ],
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.common.js'
+        }
+    }
 };
