@@ -1,6 +1,7 @@
 {
     "code": "en",
-    "language": "english",
+    "countryCode": "us",
+    "language": "English",
 
     "terms": {
         "title": "iTunes API",
@@ -33,7 +34,7 @@
 
             "download-image": {
                 "standard-resolution": "Standard resolution",
-                "hight-resolution": "Hight resolution"
+                "high-resolution": "High resolution"
             }
 
         }

@@ -1,6 +1,7 @@
 {
     "code": "eu",
-    "language": "basque",
+    "countryCode": "es",
+    "language": "Euskara - Basque",
 
     "terms": {
         "title": "iTunesko APIa",
@@ -33,7 +34,7 @@
 
             "download-image": {
                 "standard-resolution": "Bereizmen estandarra",
-                "hight-resolution": "Bereizmen handia"
+                "high-resolution": "Bereizmen handia"
             }
 
         }
