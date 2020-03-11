@@ -90,15 +90,14 @@
         <div id="response">
             <result-item v-for="result in results" v-bind:result="result" />
 
-            <template v-if="searching">
-                <div style="width: 100%; height: 1rem;"></div>
-                <div id="loader">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </template>
+            <div style="width: 100%; height: 1rem;"></div>
+
+            <div id="loader" v-if="searching">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
 
         <footer>
@@ -107,8 +106,13 @@
     </div>
 </template>
 <script>
-    import iTunesAPI from "./assets/js/iTunesAPI";
-    let api;
+    import swal from "sweetalert";
+
+    import iTunesAPI from "./class/iTunesAPI";
+    import NoTermException from "./exception/NoTermException";
+    import NoNetworkException from "./exception/NoNetworkException";
+
+    let api = new iTunesAPI();
 
     export default {
         data() {
@@ -131,7 +135,7 @@
             }
         },
         methods: {
-            spyToTop() {
+            scrollSpy() {
                 this.displayToTop = document.getElementById("search-iTunes").getBoundingClientRect().bottom <= 0;
 
                 if (!this.displayToTop) {
@@ -165,7 +169,6 @@
                 formData.set("media", e.target.querySelector("[name=entity]").selectedOptions[0].parentNode.getAttribute("label").toLowerCase());
 
                 this.results.splice(0);
-                this.searching = true;
 
                 history.pushState({
                     "term": formData.get("term"),
@@ -180,13 +183,41 @@
             async search(formData) {
                 this.formData = formData;
 
-                let res = await api.search(formData);
+                try {
+                    this.searching = true;
+                    let res = await api.search(formData);
 
-                this.searching = false;
+                    if (res && res.resultCount > 0) {
+                        this.results.push.apply(this.results, res.results);
+                    }
 
-                if (res && res.resultCount > 0) {
-                    this.results.push.apply(this.results, res.results);
+                } catch (e) {
+                    let errorTitle;
+                    let errorText;
+                    switch (e.constructor) {
+                        case NoTermException:
+                            errorTitle = this.$i18n.t("terms.iTunes-search.errors.no-term.title");
+                            errorText = this.$i18n.t("terms.iTunes-search.errors.no-term.text");
+                            break;
+                        case NoNetworkException:
+                            errorTitle = this.$i18n.t("terms.iTunes-search.errors.no-network.title");
+                            errorText = this.$i18n.t("terms.iTunes-search.errors.no-network.text");
+                            break;
+                        default:
+                            errorTitle = "Error";
+                            errorText = "Unknown error";
+                    }
+
+                    swal({
+                        title: errorTitle,
+                        text: errorText,
+                        icon: "error"
+                    });
+
+                } finally {
+                    this.searching = false;
                 }
+
             },
             popstate(e) {
                 let data = e.state;
@@ -238,7 +269,6 @@
             }
         },
         mounted() {
-            api = new iTunesAPI(this.$i18n);
             this.setFirstMatchLocale();
 
             if (location.search) {
@@ -246,7 +276,7 @@
             }
 
             window.addEventListener("popstate", this.popstate);
-            document.addEventListener("scroll", this.spyToTop);
+            document.addEventListener("scroll", this.scrollSpy);
         }
     }
 </script>
