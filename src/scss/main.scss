@@ -43,6 +43,13 @@ button {
     border-radius: .3rem;
 }
 
+button:focus,
+button:hover {
+    background-color: $primaryColor;
+    color: white;
+    cursor: pointer;
+}
+
 noscript {
     display: block;
     width: 80%;
@@ -91,13 +98,6 @@ noscript {
     .inline {
         display: flex;
         justify-content: space-between;
-    }
-
-    [type="submit"]:focus,
-    [type="submit"]:hover {
-        background-color: $primaryColor;
-        color: white;
-        cursor: pointer;
     }
 }
 
@@ -203,6 +203,10 @@ $crolltopBackground: rgba(84, 110, 122, .4);
                 filter: brightness(1);
             }
         }
+    }
+
+    #loadMore {
+        margin: auto;
     }
 }
 
