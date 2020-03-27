@@ -248,7 +248,7 @@
                     if (data.length == 2) {
                         switch (data[0]) {
                             case "q":
-                                formData.set("term", data[1]);
+                                formData.set("term", unescape(data[1]));
                                 break;
                             case "media":
                             case "entity":
