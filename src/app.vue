@@ -83,7 +83,7 @@
             <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang" :checked="($i18n.locale == lang) ? true : false">{{ $i18n.messages[lang].language }}</option>
         </select>
 
-        <div id="scrollTop" v-if="displayToTop && !scrollingTop" @click="toTop()">
+        <div id="scrollTop" v-if="displayToTop" @click="toTop()">
             ↑
         </div>
 
@@ -117,7 +117,6 @@
     export default {
         data() {
             return {
-                scrollingTop: false,
                 displayToTop: false,
                 formData: null,
                 defaults: {
@@ -137,13 +136,8 @@
         methods: {
             scrollSpy() {
                 this.displayToTop = document.getElementById("search-iTunes").getBoundingClientRect().bottom <= 0;
-
-                if (!this.displayToTop) {
-                    this.scrollingTop = false;
-                }
             },
             toTop() {
-                this.scrollingTop = true;
                 document.body.scrollIntoView({behavior: "smooth"});
             },
             setFirstMatchLocale() {
