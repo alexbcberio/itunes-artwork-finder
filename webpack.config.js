@@ -6,10 +6,10 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
 const path = require("path");
 
-const devMode = process.env.NODE_ENV !== 'production';
+const devMode = !process.argv.includes("--production");
 
 module.exports = {
-    mode: "development",
+    mode: devMode ? "development" : "production",
     entry: ["./src/index.js", "./src/scss/main.scss"],
     output: {
         path: path.resolve(__dirname, "docs"),
