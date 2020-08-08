@@ -1,6 +1,5 @@
 {
     "code": "eu",
-    "countryCode": "es",
     "language": "Euskara - Basque",
 
     "terms": {
@@ -33,6 +32,7 @@
             },
 
             "download-image": {
+                "download": "Argazkia Deskargatu",
                 "standard-resolution": "Bereizmen estandarra",
                 "high-resolution": "Bereizmen handia"
             }

@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+@import "~animate.css";
+
 @import "reset";
 @import "loader";
-
-$primaryColor: #546e7a;
+@import "variables";
+@import "overlay";
 
 select {
     -webkit-appearance: none;
@@ -100,8 +102,6 @@ noscript {
         justify-content: space-between;
     }
 }
-
-$crolltopBackground: rgba(84, 110, 122, .4);
 
 #scrollTop {
     position: fixed;
@@ -226,9 +226,6 @@ footer {
         }
     }
 }
-
-$darkSchemeBackground: #333333;
-$darkSchemeColor: #eeeeee;
 
 @media (prefers-color-scheme: dark) {
 

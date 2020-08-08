@@ -1,6 +1,5 @@
 {
     "code": "en",
-    "countryCode": "us",
     "language": "English",
 
     "terms": {
@@ -33,6 +32,7 @@
             },
 
             "download-image": {
+                "download": "Download Image",
                 "standard-resolution": "Standard resolution",
                 "high-resolution": "High resolution"
             }

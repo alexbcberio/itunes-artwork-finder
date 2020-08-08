@@ -10,6 +10,7 @@ import eu from "./locales/eu.json";
 import App from "./app.vue";
 
 import ResultItem from "./components/ResultItem";
+import OverlayImage from "./components/OverlayImage";
 
 Vue.use(VueI18n);
 

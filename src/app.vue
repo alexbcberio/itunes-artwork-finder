@@ -5,7 +5,7 @@
         <form action="javascript:" method="post" id="search-iTunes" @submit="submit">
             <input type="text" name="term" :placeholder="$t('terms.search-iTunes-form.term-placeholder')" :value="formData ? formData.get('term') : ''" autofocus autocomplete="off" spellcheck="false" />
 
-            <input type="hidden" name="country" :value="formData ? formData.get('country') : $t('countryCode')"/>
+            <input type="hidden" name="country" :value="formData ? formData.get('country') : $t('terms.search-iTunes-form.country-code')" />
 
             <div class="inline">
                 <select name="entity" :value="formData ? formData.get('entity') : defaults.entity">
@@ -83,12 +83,12 @@
             <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang" :checked="($i18n.locale == lang) ? true : false">{{ $i18n.messages[lang].language }}</option>
         </select>
 
-        <div id="scrollTop" v-if="displayToTop" @click="toTop()">
+        <div id="scrollTop" v-if="displayToTop && !selectedItem.open" @click="toTop()">
             ↑
         </div>
 
         <div id="response">
-            <result-item v-for="result in results" v-bind:result="result" />
+            <result-item v-for="result in results" :key="result.collectionId" :result="result" @preview="previewItem" />
 
             <div style="width: 100%; height: 1rem;"></div>
 
@@ -99,6 +99,8 @@
                 <span></span>
             </div>
         </div>
+
+        <overlay-image v-show="selectedItem.open" :title="selectedItem.title" :src="selectedItem.image" @close="selectedItem.open=false" />
 
         <footer>
             Made by <a href="https://github.com/alexbcberio" target="_blank">alexbcberio</a>, view the <a href="https://github.com/alexbcberio/itunes-artwork-finder" target="_blank">source code</a> on GitHub
@@ -124,7 +126,12 @@
                     limit: 50
                 },
                 searching: false,
-                results: []
+                results: [],
+                selectedItem: {
+                    open: false,
+                    image: null,
+                    title: null
+                }
             }
         },
         watch: {
@@ -146,12 +153,10 @@
 
                 for (let i in userLocales) {
                     if (userLocales[i].length === 2) {
-                        for (let j in locales) {
-                            if (locales.includes(userLocales[i])) {
-                                this.$i18n.locale = userLocales[i];
+                        if (locales.includes(userLocales[i])) {
+                            this.$i18n.locale = userLocales[i];
 
-                                return userLocales[i];
-                            }
+                            return userLocales[i];
                         }
                     }
                 }
@@ -230,7 +235,6 @@
             setQueryParams() {
                 let params = location.search.substr(1).split("&");
 
-                let formElement = document.getElementById("search-iTunes");
                 let formData = new FormData();
                 formData.set("country", "us");
                 formData.set("entity", "album");
@@ -260,6 +264,13 @@
                 if (formData.get("term")) {
                     this.search(formData);
                 }
+            },
+            previewItem(title, artworkUrl) {
+                // preload the image first
+                this.selectedItem.open = true;
+
+                this.selectedItem.title = title;
+                this.selectedItem.image = artworkUrl;
             }
         },
         mounted() {
@@ -271,6 +282,10 @@
 
             window.addEventListener("popstate", this.popstate);
             document.addEventListener("scroll", this.scrollSpy);
+        },
+        beforeDestroy() {
+            window.removeEventListener("popstate", this.popstate);
+            document.removeEventListener("scroll", this.scrollSpy);
         }
     }
 </script>

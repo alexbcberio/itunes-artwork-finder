@@ -1,6 +1,5 @@
 {
     "code": "es",
-    "countryCode": "es",
     "language": "Español - Spanish",
 
     "terms": {
@@ -33,6 +32,7 @@
             },
 
             "download-image": {
+                "download": "Descargar Imagen",
                 "standard-resolution": "Resolución Estandar",
                 "high-resolution": "Alta Resolución"
             }

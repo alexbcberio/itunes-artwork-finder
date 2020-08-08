@@ -24,6 +24,7 @@
         "serve": "webpack-dev-server --open"
     },
     "dependencies": {
+        "animate.css": "^4.1.0",
         "sweetalert": "^2.1.2"
     }
 }
