@@ -88,7 +88,7 @@
         </div>
 
         <div id="response">
-            <result-item v-for="result in results" :key="result.collectionId" :result="result" @preview="previewItem" />
+            <result-item v-for="(result, i) in results" :key="i" :result="result" @preview="previewItem" />
 
             <div style="width: 100%; height: 1rem;"></div>
 
