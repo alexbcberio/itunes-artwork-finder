@@ -88,6 +88,7 @@
         <main>
             <div id="response">
                 <result-item v-for="(result, i) in results" :key="i" :result="result" @preview="previewItem" />
+                <p v-if="!searching && resultsFound === false" class="not-found">{{ $t("terms.iTunes-search.not-found") }}</p>
 
                 <div style="width: 100%; height: 1rem;"></div>
 
@@ -125,6 +126,7 @@
                 },
                 searching: false,
                 results: [],
+                resultsFound: null,
                 selectedItem: {
                     open: false,
                     image: null,
@@ -182,9 +184,11 @@
 
                 try {
                     this.searching = true;
+                    this.resultsFound = false;
                     let res = await api.search(formData);
 
                     if (res && res.resultCount > 0) {
+                        this.resultsFound = true;
                         this.results.push.apply(this.results, res.results);
                     }
 
@@ -228,7 +232,11 @@
                 this.results.splice(0);
                 this.searching = true;
 
-                this.search(formData);
+                if (formData.get("term")) {
+                    this.search(formData);
+                } else {
+                    this.searching = false;
+                }
             },
             setQueryParams() {
                 let params = location.search.substr(1).split("&");

@@ -131,6 +131,12 @@ noscript {
     align-items: stretch;
     margin-bottom: 1rem;
 
+    .not-found {
+        width: 80%;
+        margin: auto;
+        text-align: center;
+    }
+
     .collectionElement {
         width: 90%;
         margin: auto;

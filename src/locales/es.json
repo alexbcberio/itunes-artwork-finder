@@ -13,6 +13,7 @@
         },
 
         "iTunes-search": {
+            "not-found": "No se han encontrado resultados con los parámetros dados.",
             "errors": {
                 "exception": "Ocurrió un error al realizar la búsqueda: %exceptionMsg%",
                 "httpError": "El servidor respondió con un el estado %httpStatus% (%httpResponse%), vuelve a intentarlo más tarde",

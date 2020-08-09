@@ -13,6 +13,7 @@
         },
 
         "iTunes-search": {
+            "not-found": "Ezin izan da ezer aurkitu emandako parametroekin.",
             "errors": {
                 "exception": "Errore bat gertaratu da bilaketa egiterakoan: %exceptionMsg%",
                 "httpError": "Zerbitzariak %httpStatus% (%httpResponse%) estatuarekin erantzun du, saia zaitez geroago",
