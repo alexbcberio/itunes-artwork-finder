@@ -1,6 +1,12 @@
 <template>
     <div>
-        <h1 id="title">{{ $t("terms.title") }}</h1>
+        <header>
+            <h1 id="title">{{ $t("terms.title") }}</h1>
+
+            <select id="changeLocale" v-model="$i18n.locale">
+                <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang" :checked="($i18n.locale == lang) ? true : false">{{ $i18n.messages[lang].language }}</option>
+            </select>
+        </header>
 
         <form action="javascript:" method="post" id="search-iTunes" @submit="submit">
             <input type="text" name="term" :placeholder="$t('terms.search-iTunes-form.term-placeholder')" :value="formData ? formData.get('term') : ''" autofocus autocomplete="off" spellcheck="false" />
@@ -79,21 +85,18 @@
             </button>
         </form>
 
-        <select id="changeLocale" v-model="$i18n.locale">
-            <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang" :checked="($i18n.locale == lang) ? true : false">{{ $i18n.messages[lang].language }}</option>
-        </select>
+        <main>
+            <div id="response">
+                <result-item v-for="(result, i) in results" :key="i" :result="result" @preview="previewItem" />
 
-        <div id="scrollTop" v-if="displayToTop && !selectedItem.open" @click="toTop()">
-            ↑
-        </div>
+                <div style="width: 100%; height: 1rem;"></div>
 
-        <div id="response">
-            <result-item v-for="(result, i) in results" :key="i" :result="result" @preview="previewItem" />
-
-            <div style="width: 100%; height: 1rem;"></div>
-
-            <loader v-if="searching"/>
-        </div>
+                <loader v-if="searching"/>
+            </div>
+            <div id="scrollTop" v-if="displayToTop && !selectedItem.open" @click="toTop()">
+                ↑
+            </div>
+        </main>
 
         <overlay-image v-show="selectedItem.open" :title="selectedItem.title" :src="selectedItem.image" @close="selectedItem.open=false" />
 
@@ -261,15 +264,22 @@
                 }
             },
             previewItem(title, artworkUrl) {
-                // preload the image first
                 this.selectedItem.open = true;
 
                 this.selectedItem.title = title;
                 this.selectedItem.image = artworkUrl;
+            },
+            initMainHeight() {
+                const header = document.getElementsByTagName("header")[0].getClientRects()[0].height;
+                const form = document.getElementById("search-iTunes").getClientRects()[0].height;
+                const footer = document.getElementsByTagName("footer")[0].getClientRects()[0].height;
+
+                document.getElementsByTagName("main")[0].style.minHeight = `calc(100vh - ${header + form + footer}px)`;
             }
         },
         mounted() {
             this.setFirstMatchLocale();
+            this.initMainHeight();
 
             if (location.search) {
                 this.setQueryParams();
