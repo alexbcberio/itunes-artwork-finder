@@ -92,12 +92,7 @@
 
             <div style="width: 100%; height: 1rem;"></div>
 
-            <div id="loader" v-if="searching">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <loader v-if="searching"/>
         </div>
 
         <overlay-image v-show="selectedItem.open" :title="selectedItem.title" :src="selectedItem.image" @close="selectedItem.open=false" />

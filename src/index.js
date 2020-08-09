@@ -9,8 +9,9 @@ import eu from "./locales/eu.json";
 
 import App from "./app.vue";
 
-import ResultItem from "./components/ResultItem";
+import Loader from "./components/Loader";
 import OverlayImage from "./components/OverlayImage";
+import ResultItem from "./components/ResultItem";
 
 Vue.use(VueI18n);
 
