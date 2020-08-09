@@ -21,7 +21,9 @@ export default class iTunesAPI {
         } else if (!formData.get("term")) {
             throw new NoTermException();
         } else {
-            return await this.fetch(formData);
+            return await this.fetch(formData, {
+                mode: "no-cors"
+            });
         }
     }
 
