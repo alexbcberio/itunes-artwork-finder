@@ -34,7 +34,7 @@
     height: calc(100% - #{$overlayHeaderHeight * 2});
 
     .image {
-      display: block;
+      display: flex;
       width: 80%;
       height: 80%;
       cursor: pointer;
