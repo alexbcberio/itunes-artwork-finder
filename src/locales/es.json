@@ -38,6 +38,8 @@
                 "high-resolution": "Alta Resolución"
             }
 
-        }
+        },
+
+        "footer": "Creado por <a href=\"https://github.com/alexbcberio\" target=\"_blank\">alexbcberio</a>, ver el <a href=\"https://github.com/alexbcberio/itunes-artwork-finder\" target=\"_blank\">código fuente</a> en GitHub"
     }
 }

@@ -28,7 +28,7 @@
                 },
                 "not-found": {
                     "title": "No results found",
-                    "text": "We coulnd't find anything with the terms you used, revise for misspellings or try writing it with similar words"
+                    "text": "We couldn't find anything with the terms you used, revise for misspellings or try writing it with similar words"
                 }
             },
 
@@ -38,6 +38,8 @@
                 "high-resolution": "High resolution"
             }
 
-        }
+        },
+
+        "footer": "Made by <a href=\"https://github.com/alexbcberio\" target=\"_blank\">alexbcberio</a>, view the <a href=\"https://github.com/alexbcberio/itunes-artwork-finder\" target=\"_blank\">source code</a> on GitHub"
     }
 }

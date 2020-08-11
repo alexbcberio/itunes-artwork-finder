@@ -101,9 +101,7 @@
 
         <overlay-image v-show="selectedItem.open" :title="selectedItem.title" :src="selectedItem.image" @close="selectedItem.open=false" />
 
-        <footer>
-            Made by <a href="https://github.com/alexbcberio" target="_blank">alexbcberio</a>, view the <a href="https://github.com/alexbcberio/itunes-artwork-finder" target="_blank">source code</a> on GitHub
-        </footer>
+        <footer v-html="$t('terms.footer')"></footer>
     </div>
 </template>
 <script>
