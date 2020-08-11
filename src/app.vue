@@ -86,9 +86,11 @@
         </form>
 
         <main>
+            <div v-if="resultsFound === null" id="welcome-guide" v-html="$t('terms.welcome-guide')">
+            </div>
             <div id="response">
-                <result-item v-for="(result, i) in results" :key="i" :result="result" @preview="previewItem" />
                 <p v-if="!searching && resultsFound === false" class="not-found">{{ $t("terms.iTunes-search.not-found") }}</p>
+                <result-item v-for="(result, i) in results" :key="i" :result="result" @preview="previewItem" />
 
                 <div style="width: 100%; height: 1rem;"></div>
 

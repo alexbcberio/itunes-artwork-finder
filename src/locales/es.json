@@ -40,6 +40,8 @@
 
         },
 
+        "welcome-guide": "<p>Esta herramienta te ayuda a buscar más fácilmente carátulas de Álbunes, Películas y demás elementos multimedia. ¡Si están en iTunes los encontrarás aquí!</p><h4>Tan fácil como seguir estos simples pasos:</h4><ol><li>Indica en el primer campo el termino a buscar.</li><li>Elige el tipo de estás buscando.</li><li>(opcional) establece un número máximo de resultados.</li><li>Pulsa sobre el botón de \"Buscar\".</li></ol>",
+
         "footer": "Creado por <a href=\"https://github.com/alexbcberio\" target=\"_blank\">alexbcberio</a>, ver el <a href=\"https://github.com/alexbcberio/itunes-artwork-finder\" target=\"_blank\">código fuente</a> en GitHub"
     }
 }
