@@ -85,8 +85,23 @@
             </button>
         </form>
 
-        <main>
-            <div v-if="resultsFound === null" id="welcome-guide" v-html="$t('terms.welcome-guide')">
+        <main :style="{display: resultsFound === null ? 'flex' : ''}">
+            <div v-if="resultsFound === null" id="welcome-guide" ve-html="">
+                <div class="step-1">
+                    <img src="img/pen-icon.svg" alt="Pen icon">
+                    <h3>{{ $t("terms.welcome-guide.step-1.title") }}</h3>
+                    <p>{{ $t("terms.welcome-guide.step-1.text") }}</p>
+                </div>
+                <div class="step-2">
+                    <img src="img/search-icon.svg" alt="Search icon">
+                    <h3>{{ $t("terms.welcome-guide.step-2.title") }}</h3>
+                    <p>{{ $t("terms.welcome-guide.step-2.text") }}</p>
+                </div>
+                <div class="step-3">
+                    <img src="img/image-file-icon.svg" alt="Image file icon">
+                    <h3>{{ $t("terms.welcome-guide.step-3.title") }}</h3>
+                    <p>{{ $t("terms.welcome-guide.step-3.text") }}</p>
+                </div>
             </div>
             <div id="response">
                 <p v-if="!searching && resultsFound === false" class="not-found">{{ $t("terms.iTunes-search.not-found") }}</p>
@@ -282,7 +297,7 @@
                 const form = document.getElementById("search-iTunes").getClientRects()[0].height;
                 const footer = document.getElementsByTagName("footer")[0].getClientRects()[0].height;
 
-                document.getElementsByTagName("main")[0].style.minHeight = `calc(100vh - ${header + form + footer}px)`;
+                document.getElementsByTagName("main")[0].style.minHeight = `calc(100vh - ${header + form + footer}px - 1rem)`;
             }
         },
         mounted() {

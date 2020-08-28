@@ -40,7 +40,20 @@
 
         },
 
-        "welcome-guide": "<p>Tresna honek errezago egiten dizu Albun, Pelikula eta beste elementu multimediaren karatulak aurkitzea. iTunenes erregistratuak badaude hemen aurkituko dituzu!</p><h4>Pausu hauek segitu bezain erreza:</h4><ol><li>Jarri lehenengo eremuan bilatu nahiko terminoa.</li><li>Aukeratu elementu mota.</li><li>(hautazkoa) aldatu gehieneko bilaturiko elementuen kopuru zenbakia.</li><li>Sakatu \"Bilatu\" botoia.</li></ol>",
+        "welcome-guide": {
+            "step-1": {
+                "title": "Idatzi",
+                "text": "Adierazi bilatu nahi duzuna"
+            },
+            "step-2": {
+                "title": "Bilatu",
+                "text": "Bilaketa egin"
+            },
+            "step-3": {
+                "title": "Jaitsi",
+                "text": "Aukerako argazkia eskuratu"
+            }
+        },
 
         "footer": "<a href=\"https://github.com/alexbcberio\" target=\"_blank\">alexbcberio</a>k egina, ikusi <a href=\"https://github.com/alexbcberio/itunes-artwork-finder\" target=\"_blank\">iturburu kodea</a> GitHub-en"
     }

@@ -124,9 +124,23 @@ noscript {
     }
 }
 
-#welcome-guide{
+#welcome-guide {
     width: 80%;
     margin: auto;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    text-align: center;
+
+    & > div {
+        margin: auto;
+        padding: 0px 2rem;
+    }
+
+    img {
+        height: 3rem;
+    }
 }
 
 #response {
@@ -258,6 +272,10 @@ footer {
 
     select * {
         background-color: $darkSchemeBackground;
+    }
+
+    #welcome-guide img {
+        filter: invert(1);
     }
 
     #response .collectionElement .albumart:hover {

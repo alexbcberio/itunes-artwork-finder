@@ -40,7 +40,20 @@
 
         },
 
-        "welcome-guide": "<p>This tool helps you search more easy image art of Albums, Movies and other multimedia elements. If they are in iTunes you will find it here!</p><h4>As easy as these steps:</h4><ol><li>Set in the first field the term you are looking for.</li><li>Choose the type of element.</li><li>(optional) change the maximum number of results.</li><li>Press on the \"Search\" button.</li></ol>",
+        "welcome-guide": {
+            "step-1": {
+                "title": "Write",
+                "text": "Specify what you wanna find"
+            },
+            "step-2": {
+                "title": "Search",
+                "text": "Trigger a search"
+            },
+            "step-3": {
+                "title": "Download",
+                "text": "Get the perfect image"
+            }
+        },
 
         "footer": "Made by <a href=\"https://github.com/alexbcberio\" target=\"_blank\">alexbcberio</a>, view the <a href=\"https://github.com/alexbcberio/itunes-artwork-finder\" target=\"_blank\">source code</a> on GitHub"
     }

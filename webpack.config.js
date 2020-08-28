@@ -59,7 +59,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             { from: "static/manifest.json" },
-            { from: "static/img/", to: "img" }
+            { from: "static/img", to: "img" }
         ]),
         new VueLoaderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
