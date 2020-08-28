@@ -67,7 +67,7 @@ Vue.component('OverlayImage', {
     document.removeEventListener("keydown", this.kbdControls);
   },
   template: `
-  <transition enter-active-class="animate__animated animate__fadeIn" leave-active-class="animate__animated animate__fadeOut" @before-enter="visible = true" @after-leave="visible = false">
+  <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" @before-enter="visible = true" @after-leave="visible = false">
     <div class="overlay">
       <div class="overlay-header">
           <span></span>
