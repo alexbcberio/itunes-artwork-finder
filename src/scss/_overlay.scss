@@ -33,6 +33,7 @@
     width: 100%;
     height: calc(100% - #{$overlayHeaderHeight * 2});
 
+    /* overlayImage */
     .image {
       display: flex;
       width: 80%;
@@ -41,6 +42,25 @@
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
+    }
+  }
+
+  &#analytics-consent {
+    .overlay-content .body {
+      max-width: 60%;
+
+      .analytics-details {
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+
+      .analytics-consent-deny:hover {
+        background-color: #f44336;
+      }
+
+      .analytics-consent-accept:hover {
+        background-color: #388E3C;
+      }
     }
   }
 }

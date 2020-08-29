@@ -44,15 +44,6 @@ Vue.component('OverlayImage', {
         document.body.removeChild(img);
       }
     },
-    kbdControls: function(e) {
-      if (this.visible) {
-        switch(e.code) {
-          case "Escape":
-            this.$emit("close");
-            break;
-        }
-      }
-    }
   },
   watch: {
     "src": function() {
@@ -60,26 +51,13 @@ Vue.component('OverlayImage', {
       this.preloadImage();
     }
   },
-  mounted() {
-    document.addEventListener("keydown", this.kbdControls);
-  },
-  beforeDestroy() {
-    document.removeEventListener("keydown", this.kbdControls);
-  },
   template: `
   <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" @before-enter="visible = true" @after-leave="visible = false">
-    <div class="overlay">
-      <div class="overlay-header">
-          <span></span>
-          <span v-if="title" class="title">{{ title }}</span>
-          <span class="close" @click="$emit('close')">&times;</span>
+    <overlay :title="title" :listenKeyboard="visible" @close="$emit('close')">
+      <div class="image" :style="{backgroundImage: imgPreloaded ? 'url(' + src + ')' : ''}" @click="downloadImage" :title="$t('terms.iTunes-search.download-image.download')">
+        <loader v-if="!imgPreloaded" />
       </div>
-      <div class="overlay-content">
-          <div class="image" :style="{backgroundImage: imgPreloaded ? 'url(' + src + ')' : ''}" @click="downloadImage" :title="$t('terms.iTunes-search.download-image.download')">
-            <loader v-if="!imgPreloaded" />
-          </div>
-      </div>
-    </div>
+    </overlay>
   </transition>
   `
 });

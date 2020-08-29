@@ -55,6 +55,16 @@
             }
         },
 
+        "analytics-consent": {
+            "title": "Analiketen onarpena",
+            "body": "Zerbitzu hobe bat eskaintzeko zure ibilketa analizatzea gustatuko litzaiguke, baina lehenik zure baimenarekin kontatzea gustatuko litzaiguke.",
+            "let-us": "Uzten diguzu?",
+            "show-more-info": "Argibide gehiago",
+            "more-info": "Lehenik azpimarratu bidaliko informazioa ez dela beste inorekin partekatuko. <a href=\"https://matomo.org/\" target=\"_blank\">Matomo</a> erabiltzen dugu, Google Analytics-en alternatiba bat, modu honetan zure pribatasuna ahalik eta gehien babesten dugu. Hurrengo informazioa biltzen dugu:<ul><li>IP helbidea: horrialdera sartu zaren IP helbidea, azkeneko 2 byteak ezabatzen ditugu. Hau da, 192.168.1.152 helbidea 192.168.0.0 bilakatzen da</li><li>Nabigatzailea, Sistema Eragilea eta pantalla tamaina: informazio hau nabigatzaileak automatikoki bidaltzen du. Honi esker erabiltzen duzun gailu mota jakin dezakegu, ordenagailua, telefonoa, telebista, eta abar.</li><li>Nabigatzailearen hizkuntza nagusia: jatorriko herria jakiteko (ez dugu IP helbidea geolokalizatzen) informazio honi ze hizkuntza berriak jartzea konsideratu dezakegu.</ul>Cookiak erabiltzen ditugu konfigurazio batzuk gordetzeko. Informazio gehiago jakin nahi baduzu <a href=\"mailto:{mail}?subject=iTunes-artwork-search buruzko argitasuna\">bidalidazu email bat</a>.",
+            "deny-button": "Ez bidali.",
+            "accept-button": "Bai."
+        },
+
         "footer": "<a href=\"https://github.com/alexbcberio\" target=\"_blank\">alexbcberio</a>k egina, ikusi <a href=\"https://github.com/alexbcberio/itunes-artwork-finder\" target=\"_blank\">iturburu kodea</a> GitHub-en"
     }
 }

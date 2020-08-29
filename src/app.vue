@@ -118,6 +118,8 @@
 
         <overlay-image v-show="selectedItem.open" :title="selectedItem.title" :src="selectedItem.image" @close="selectedItem.open=false" />
 
+        <analytics-consent v-if="showAnalyticsConsent" @close="showAnalyticsConsent=false" />
+
         <footer v-html="$t('terms.footer')"></footer>
     </div>
 </template>
@@ -133,6 +135,7 @@
     export default {
         data() {
             return {
+                showAnalyticsConsent: !(localStorage.getItem("analyticsConsent")),// || navigator.doNotTrack),
                 displayToTop: false,
                 formData: null,
                 defaults: {
@@ -201,6 +204,8 @@
                     this.searching = true;
                     this.resultsFound = false;
                     let res = await api.search(formData);
+
+                    this.$matomo.trackSiteSearch(formData.get("term"), formData.get("entity"), res.resultCount);
 
                     if (res && res.resultCount > 0) {
                         this.resultsFound = true;
@@ -298,6 +303,13 @@
                 const footer = document.getElementsByTagName("footer")[0].getClientRects()[0].height;
 
                 document.getElementsByTagName("main")[0].style.minHeight = `calc(100vh - ${header + form + footer}px - 1rem)`;
+            },
+            trackPageView() {
+                if (!this.$matomo) {
+                    setTimeout(this.trackPageView, 250);
+                } else {
+                    this.$matomo.trackPageView();
+                }
             }
         },
         mounted() {
@@ -310,6 +322,8 @@
 
             window.addEventListener("popstate", this.popstate);
             document.addEventListener("scroll", this.scrollSpy);
+
+            this.trackPageView();
         },
         beforeDestroy() {
             window.removeEventListener("popstate", this.popstate);

@@ -10,3 +10,13 @@
 body {
     margin: 0;
 }
+
+a {
+    color: $lightSchemeColor;
+}
+
+@media (prefers-color-scheme: dark) {
+    a {
+        color: $darkSchemeColor;
+    }
+}

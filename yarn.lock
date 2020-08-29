@@ -5054,6 +5054,11 @@ vue-loader@^15.9.0:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-matomo@^3.13.5-0:
+  version "3.13.5-0"
+  resolved "https://registry.yarnpkg.com/vue-matomo/-/vue-matomo-3.13.5-0.tgz#192840b05311ee55de8b684a428a10817a3d4c5e"
+  integrity sha512-mxOKX3tVVP4y3u1kzH6GdsW5J0He5PeijSGLZkfLpdKAmrsXRhdLzl7IewyfvRYAB1LTLl92q+u7gUT9tQTrAw==
+
 vue-style-loader@^4.1.0:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-4.1.2.tgz#dedf349806f25ceb4e64f3ad7c0a44fba735fcf8"
