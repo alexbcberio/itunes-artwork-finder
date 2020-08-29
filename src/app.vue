@@ -205,7 +205,9 @@
                     this.resultsFound = false;
                     let res = await api.search(formData);
 
-                    this.$matomo.trackSiteSearch(formData.get("term"), formData.get("entity"), res.resultCount);
+                    if (this.$matomo) {
+                        this.$matomo.trackSiteSearch(formData.get("term"), formData.get("entity"), res.resultCount);
+                    }
 
                     if (res && res.resultCount > 0) {
                         this.resultsFound = true;

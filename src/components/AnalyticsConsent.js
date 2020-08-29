@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import swal from 'sweetalert';
 
 Vue.component("AnalyticsConsent", {
   data: function() {
@@ -8,13 +9,19 @@ Vue.component("AnalyticsConsent", {
   },
   methods: {
     denyConsent() {
-      this.$matomo.forgetConsentGiven();
-      localStorage.setItem("analyticsConsent", "deny");
+      if (this.$matomo) {
+        this.$matomo.forgetConsentGiven();
+        localStorage.setItem("analyticsConsent", "deny");
+      }
+
       this.$emit("close");
     },
     acceptConsent() {
-      this.$matomo.rememberConsentGiven();
-      localStorage.setItem("analyticsConsent", "accept");
+      if (this.$matomo) {
+        this.$matomo.rememberConsentGiven();
+        localStorage.setItem("analyticsConsent", "accept");
+      }
+
       this.$emit("close");
     }
   },
