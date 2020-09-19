@@ -53,7 +53,7 @@ Vue.component('OverlayImage', {
   },
   template: `
   <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" @before-enter="visible = true" @after-leave="visible = false">
-    <overlay :title="title" :listenKeyboard="visible" @close="$emit('close')">
+    <overlay :title="title" :listenKeyboard=true @close="$emit('close')">
       <div class="image" :style="{backgroundImage: imgPreloaded ? 'url(' + src + ')' : ''}" @click="downloadImage" :title="$t('terms.iTunes-search.download-image.download')">
         <loader v-if="!imgPreloaded" />
       </div>
