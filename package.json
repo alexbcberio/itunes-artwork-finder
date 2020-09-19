@@ -2,18 +2,18 @@
     "name": "itunes-artwork-finder",
     "devDependencies": {
         "clean-webpack-plugin": "^3.0.0",
-        "copy-webpack-plugin": "^5.1.1",
-        "css-loader": "^3.4.2",
-        "file-loader": "^5.1.0",
-        "html-webpack-plugin": "^3.2.0",
-        "mini-css-extract-plugin": "^0.9.0",
+        "copy-webpack-plugin": "^6.1.1",
+        "css-loader": "^4.3.0",
+        "file-loader": "^6.1.0",
+        "html-webpack-plugin": "^4.4.1",
+        "mini-css-extract-plugin": "^0.11.2",
         "node-sass": "^4.13.1",
-        "sass-loader": "^8.0.2",
-        "vue": "^2.6.11",
-        "vue-i18n": "^8.15.3",
+        "sass-loader": "^10.0.2",
+        "vue": "^2.6.12",
+        "vue-i18n": "^8.21.1",
         "vue-loader": "^15.9.0",
-        "vue-template-compiler": "^2.6.11",
-        "webpack": "^4.41.6",
+        "vue-template-compiler": "^2.6.12",
+        "webpack": "^4.44.2",
         "webpack-cli": "^3.3.11",
         "webpack-dev-server": "^3.10.3"
     },
@@ -24,8 +24,8 @@
         "serve": "webpack-dev-server --open"
     },
     "dependencies": {
-        "animate.css": "^4.1.0",
+        "animate.css": "^4.1.1",
         "sweetalert": "^2.1.2",
-        "vue-matomo": "^3.13.5-0"
+        "vue-matomo": "^3.14.0-0"
     }
 }

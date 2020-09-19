@@ -57,10 +57,12 @@ module.exports = {
             filename: devMode ? '[name].css' : '[name].[hash].css',
             chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
         }),
-        new CopyWebpackPlugin([
-            { from: "static/manifest.json" },
-            { from: "static/img", to: "img" }
-        ]),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: "static/manifest.json" },
+                { from: "static/img", to: "img" }
+            ]
+        }),
         new VueLoaderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ],
