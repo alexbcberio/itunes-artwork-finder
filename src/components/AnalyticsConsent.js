@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import swal from 'sweetalert';
 
 Vue.component("AnalyticsConsent", {
   data: function() {
