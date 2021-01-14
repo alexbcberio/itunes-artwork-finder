@@ -15,6 +15,16 @@ Vue.component('Overlay', {
           }
           break;
       }
+    },
+    backdropClose: function(e) {
+      const itemClassList = e.target.classList;
+      if (
+        itemClassList.contains("overlay") ||
+        itemClassList.contains("overlay-header") ||
+        itemClassList.contains("overlay-content")
+      ) {
+        this.$emit("close");
+      }
     }
   },
   mounted() {
@@ -28,7 +38,7 @@ Vue.component('Overlay', {
     }
   },
   template: `
-  <div class="overlay">
+  <div class="overlay" @click="backdropClose">
     <div class="overlay-header">
         <span></span>
         <span v-if="title" class="title">{{ title }}</span>

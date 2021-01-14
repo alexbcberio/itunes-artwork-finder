@@ -32,16 +32,14 @@
 
     width: 100%;
     height: calc(100% - #{$overlayHeaderHeight * 2});
+    overflow: auto;
 
     /* overlayImage */
-    .image {
+    img.artwork {
       display: flex;
-      width: 80%;
-      height: 80%;
+      max-width: 80%;
+      max-height: 80%;
       cursor: pointer;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
     }
   }
 
