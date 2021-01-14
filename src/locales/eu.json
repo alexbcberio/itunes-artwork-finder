@@ -3,10 +3,10 @@
     "language": "Euskara - Basque",
 
     "terms": {
-        "title": "iTunesko APIa",
+        "title": "iTunesko grafikagintza bilatzailea",
 
         "search-iTunes-form": {
-            "term-placeholder": "Jarri hemen bilatu nahiko terminoa",
+            "term-placeholder": "Jarri hemen bilatzeko terminoa",
             "country-code": "es",
             "result-limit": "Gehiengo emaitzak",
             "submit-text": "Bilatu"
@@ -15,9 +15,6 @@
         "iTunes-search": {
             "not-found": "Ezin izan da ezer aurkitu emandako parametroekin.",
             "errors": {
-                "exception": "Errore bat gertaratu da bilaketa egiterakoan: %exceptionMsg%",
-                "httpError": "Zerbitzariak %httpStatus% (%httpResponse%) estatuarekin erantzun du, saia zaitez geroago",
-
                 "no-network": {
                     "title": "Sare konexioa ez aurkitua",
                     "text": "Internetera ez zaudela konektatuta dirudi, konekta zaitez eta saia zaitez geroago"
@@ -27,13 +24,13 @@
                     "text": "Zeozer jarri behar duzu gu bilatzeko"
                 },
                 "not-found": {
-                    "title": "Emaitza gabe",
-                    "text": "Ez dugu ezer aurkitu idatziko terminoarekin, berrikusi ondo idatzia dagon eta bestela froga ezazu beste hitzekin"
+                    "title": "Emaitzik gabe",
+                    "text": "Ez dugu ezer aurkitu idatziko terminoarekin, berrikusi ondo idatzia dagoen, bestela froga ezazu beste hitzekin"
                 }
             },
 
             "download-image": {
-                "download": "Argazkia Deskargatu",
+                "download": "Argazkia Jaitsi",
                 "standard-resolution": "Bereizmen estandarra",
                 "high-resolution": "Bereizmen handia"
             }
@@ -60,11 +57,11 @@
             "body": "Zerbitzu hobe bat eskaintzeko zure ibilketa analizatzea gustatuko litzaiguke, baina lehenik zure baimenarekin kontatzea gustatuko litzaiguke.",
             "let-us": "Uzten diguzu?",
             "show-more-info": "Argibide gehiago",
-            "more-info": "Lehenik azpimarratu bidaliko informazioa ez dela beste inorekin partekatuko. <a href=\"https://matomo.org/\" target=\"_blank\">Matomo</a> erabiltzen dugu, Google Analytics-en alternatiba bat, modu honetan zure pribatasuna ahalik eta gehien babesten dugu. Hurrengo informazioa biltzen dugu:<ul><li>IP helbidea: horrialdera sartu zaren IP helbidea, azkeneko 2 byteak ezabatzen ditugu. Hau da, 192.168.1.152 helbidea 192.168.0.0 bilakatzen da</li><li>Nabigatzailea, Sistema Eragilea eta pantalla tamaina: informazio hau nabigatzaileak automatikoki bidaltzen du. Honi esker erabiltzen duzun gailu mota jakin dezakegu, ordenagailua, telefonoa, telebista, eta abar.</li><li>Nabigatzailearen hizkuntza nagusia: jatorriko herria jakiteko (ez dugu IP helbidea geolokalizatzen) informazio honi ze hizkuntza berriak jartzea konsideratu dezakegu.</ul>Cookiak erabiltzen ditugu konfigurazio batzuk gordetzeko. Informazio gehiago jakin nahi baduzu <a href=\"mailto:{mail}?subject=iTunes-artwork-search buruzko argitasuna\">bidalidazu email bat</a>.",
-            "deny-button": "Ez bidali.",
-            "accept-button": "Bai."
+            "more-info": "Lehenik azpimarratu bidaliko informazioa ez dela beste inorekin partekatuko. <a href=\"https://matomo.org/\" target=\"_blank\">Matomo</a> erabiltzen dugu, Google Analytics-en alternatiba bat, modu honetan zure pribatasuna ahalik eta gehien babesten dugu. Hurrengo informazioa biltzen dugu:<ul><li>IP helbidea: horrialdera sartu zaren IP helbidea, azkeneko 2 byteak ezabatzen ditugu. Hau da, 192.168.1.152 helbidea 192.168.0.0 bilakatzen da</li><li>Nabigatzailea, Sistema Eragilea eta pantalla tamaina: informazio hau nabigatzaileak automatikoki bidaltzen du. Honi esker erabiltzen duzun gailu mota jakin dezakegu: ordenagailua, telefonoa, telebista, eta abar.</li><li>Nabigatzailearen hizkuntza nagusia: jatorriko herria jakiteko (ez dugu IP helbiderik geolokalizatzen) informazio honi esker ze hizkuntza berriak jartzea konsideratu dezakegu.</ul>Cookiak erabiltzen ditugu konfigurazio batzuk gordetzeko. Informazio gehiago jakin nahi baduzu <a href=\"mailto:{mail}?subject=iTunes-artwork-search buruzko argitasuna\">bidalidazu email bat</a>.",
+            "deny-button": "Ez bidali",
+            "accept-button": "Ok"
         },
 
-        "footer": "<a href=\"https://github.com/alexbcberio\" target=\"_blank\">alexbcberio</a>k egina, ikusi <a href=\"https://github.com/alexbcberio/itunes-artwork-finder\" target=\"_blank\">iturburu kodea</a> GitHub-en"
+        "footer": "<a href=\"https://github.com/{githubUsername}\" target=\"_blank\">{githubUsername}</a>k egina, ikusi <a href=\"https://github.com/{githubUsername}/{githubRepoName}\" target=\"_blank\">iturburu kodea</a> GitHub-en"
     }
 }

@@ -3,7 +3,7 @@
     "language": "Español - Spanish",
 
     "terms": {
-        "title": "API de iTunes",
+        "title": "Buscador de artwork de iTunes",
 
         "search-iTunes-form": {
             "term-placeholder": "Inserta aquí el término a buscar",
@@ -15,9 +15,6 @@
         "iTunes-search": {
             "not-found": "No se han encontrado resultados con los parámetros dados.",
             "errors": {
-                "exception": "Ocurrió un error al realizar la búsqueda: %exceptionMsg%",
-                "httpError": "El servidor respondió con un el estado %httpStatus% (%httpResponse%), vuelve a intentarlo más tarde",
-
                 "no-network": {
                     "title": "Conexión de red no detectada",
                     "text": "Parece que no estás conectado a internet, por favor conectate y vuelve a intentarlo"
@@ -34,7 +31,7 @@
 
             "download-image": {
                 "download": "Descargar Imagen",
-                "standard-resolution": "Resolución Estandar",
+                "standard-resolution": "Resolución Estándar",
                 "high-resolution": "Alta Resolución"
             }
 
@@ -57,14 +54,14 @@
 
         "analytics-consent": {
             "title": "Consentimiento de Analíticas",
-            "body": "Con el fin de ofrecer un mejor servicio nos gustaría analizar cómo utiliza este servicio pero antes nos gustaría contar con su consentimiento.",
-            "let-us": "¿Nos lo permite?",
+            "body": "Con el fin de ofrecer un mejor servicio nos gustaría analizar cómo utilizas este servicio. Pero antes nos gustaría contar con tu consentimiento.",
+            "let-us": "¿Nos lo permites?",
             "show-more-info": "Más infomación",
-            "more-info": "Antes de nada recalcar que ninguna de la información será accedida por terceras partes. Utilizamos <a href=\"https://matomo.org/\" target=\"_blank\">Matomo</a>, un servicio alternativo a Google Analytics, de esta forma respetamos al máximo vuestra privacidad. Recolectamos la siguiente información:<ul><li>Dirección IP: la dirección IP con la que ha accedido a la web, los últimos 2 bytes son eliminados. Es decir 192.168.1.152 se convierte en 192.168.0.0</li><li>Navegador, Sistema Operativo y resolución de pantalla: esta información es automáticamente enviada por su navegador de internet. Con esto podemos saber desde qué tipo de dispositivo ha accedido, PC, teléfono inteligente, TV, etc.</li><li>Idioma principal del navegador: con el fin de saber en qué pais se encuentra (no geolocalizamos su dirección IP) además gracias a esta información podrémos considerar la posibilidad de traducir el sitio web a su idioma nativo.</li></ul>Utilizamos cookies para guardar algunas preferencias. Si quieres saber más <a href=\"mailto:{mail}?subject=Consulta acerca de iTunes-artwork-search\">mándame un e-mail</a>.",
-            "deny-button": "No enviar información.",
-            "accept-button": "Si."
+            "more-info": "Antes de nada recalcar que ninguna información será accedida por terceras partes. Utilizamos <a href=\"https://matomo.org/\" target=\"_blank\">Matomo</a>, un servicio alternativo a Google Analytics, de esta forma respetamos al máximo vuestra privacidad. Recolectamos la siguiente información:<ul><li>Dirección IP: la dirección IP con la que has accedido a la web, los últimos 2 bytes son eliminados. Es decir 192.168.1.152 se convierte en 192.168.0.0</li><li>Navegador, Sistema Operativo y resolución de pantalla: esta información es automáticamente enviada por tu navegador de internet. Con esto podemos saber desde qué tipo de dispositivo has accedido: PC, teléfono inteligente, TV, etc.</li><li>Idioma principal del navegador: con el fin de saber en qué pais te encuentras (no geolocalizamos la dirección IP) además gracias a esta información podrémos considerar la posibilidad de traducir el sitio web a tu idioma.</li></ul>Utilizamos cookies para guardar algunas preferencias. Si quieres saber más <a href=\"mailto:{mail}?subject=Consulta acerca de iTunes-artwork-search\">mándame un e-mail</a>.",
+            "deny-button": "No enviar información",
+            "accept-button": "Ok"
         },
 
-        "footer": "Creado por <a href=\"https://github.com/alexbcberio\" target=\"_blank\">alexbcberio</a>, ver el <a href=\"https://github.com/alexbcberio/itunes-artwork-finder\" target=\"_blank\">código fuente</a> en GitHub"
+        "footer": "Creado por <a href=\"https://github.com/{githubUsername}\" target=\"_blank\">{githubUsername}</a>, ver el <a href=\"https://github.com/{githubUsername}/{githubRepoName}\" target=\"_blank\">código fuente</a> en GitHub"
     }
 }

@@ -120,7 +120,7 @@
 
         <analytics-consent v-if="showAnalyticsConsent" @close="showAnalyticsConsent=false" />
 
-        <footer v-html="$t('terms.footer')"></footer>
+        <footer v-html="$t('terms.footer', { githubUsername: 'alexbcberio', githubRepoName: 'itunes-artwork-finder'})"></footer>
     </div>
 </template>
 <script>

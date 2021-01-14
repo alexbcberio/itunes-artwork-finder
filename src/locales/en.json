@@ -3,7 +3,7 @@
     "language": "English",
 
     "terms": {
-        "title": "iTunes API",
+        "title": "iTunes artwork finder",
 
         "search-iTunes-form": {
             "term-placeholder": "Write here what you want to search for",
@@ -15,9 +15,6 @@
         "iTunes-search": {
             "not-found": "We couldn't find any results with the specified parameters.",
             "errors": {
-                "exception": "There was an error making the request: %exceptionMsg%",
-                "httpError": "The server responded with a %httpStatus% status (%httpResponse%), try again later",
-
                 "no-network": {
                     "title": "No network detected",
                     "text": "Seems you have no internet access, connect and try again"
@@ -60,11 +57,11 @@
             "body": "We would like to analyze how you use this service, first we want to make sure you are right with it.",
             "let-us": "Would you let us?",
             "show-more-info": "More info",
-            "more-info": "First of all highlight that no information would be given to third parties. We use <a href=\"https://matomo.org/\" target=\"_blank\">Matomo</a>, a better alternative to Google Analytics, with this we respect your privacy as much as possible. We collect the following data:<ul><li>IP address: the IP address you access to the web, the last 2 of it are removed. That is 192.168.1.152 is saved as 192.168.0.0</li><li>Browser, OS and screen resolution: this is automatically sent by your browser. With this information we can know what type of device you are using, PC, smartphone, TV, etc.</li><li>Main browser language: instead of tracking your country using the IP address we use the browser language, also we will consider adding those languages to the site.</li></ul>We use cookies to store some of your preferences. If you wanna know more <a href=\"mailto:{mail}?subject=More info about iTunes-artwork-search\">send me an e-mail</a>.",
-            "deny-button": "Opt out.",
-            "accept-button": "Yes."
+            "more-info": "First of all highlight that no information would be shared to third parties. We use <a href=\"https://matomo.org/\" target=\"_blank\">Matomo</a>, a better alternative to Google Analytics, with this we respect your privacy as much as possible. The following data is collected:<ul><li>IP address: the IP address you access to the web, the last 2 bytes of it are removed. That is 192.168.1.152 becomes 192.168.0.0</li><li>Browser, OS and screen resolution: this is automatically sent by your browser. With this information we can know what type of device you are using: PC, smartphone, TV, etc.</li><li>Main browser language: instead of tracking your country using the IP address we use the browser language, we also will consider adding any missing languages to the site.</li></ul>We use cookies to store some of your preferences. If you wanna know more <a href=\"mailto:{mail}?subject=More info about iTunes-artwork-search\">send me an e-mail</a>.",
+            "deny-button": "Opt out",
+            "accept-button": "Ok"
         },
 
-        "footer": "Made by <a href=\"https://github.com/alexbcberio\" target=\"_blank\">alexbcberio</a>, view the <a href=\"https://github.com/alexbcberio/itunes-artwork-finder\" target=\"_blank\">source code</a> on GitHub"
+        "footer": "Made by <a href=\"https://github.com/{githubUsername}\" target=\"_blank\">{githubUsername}</a>, view the <a href=\"https://github.com/{githubUsername}/{githubRepoName}\" target=\"_blank\">source code</a> on GitHub"
     }
 }

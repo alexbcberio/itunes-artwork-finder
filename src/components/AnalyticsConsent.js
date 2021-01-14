@@ -35,7 +35,7 @@ Vue.component("AnalyticsConsent", {
       </p>
 
       <transition enter-active-class="animated zoomIn">
-        <div class="analytics-details" v-if="showMoreInfo" v-html="this.$i18n.t('terms.analytics-consent.more-info', { mail: 'info@alexbcberio.eus' })"></div>
+        <div class="analytics-details" v-if="showMoreInfo" v-html="$t('terms.analytics-consent.more-info', { mail: 'info@alexbcberio.eus' })"></div>
       </transition>
 
       <div>
