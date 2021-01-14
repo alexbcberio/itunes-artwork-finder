@@ -193,7 +193,7 @@
                     "media": formData.get("media"),
                     "entity": formData.get("entity"),
                     "limit": isNaN(formData.get("limit")) ? 50 : Math.max(Math.min(formData.get("limit"), 200), 1)
-                }, document.title, `?q=${formData.get("term")}&country=${formData.get("country")}&entity=${formData.get("entity")}&limit=${formData.get("limit")}`);
+                }, document.title, `?q=${encodeURIComponent(formData.get("term"))}&country=${encodeURIComponent(formData.get("country"))}&entity=${encodeURIComponent(formData.get("entity"))}&limit=${encodeURIComponent(formData.get("limit"))}`);
 
                 this.search(formData);
             },
@@ -261,31 +261,29 @@
                 }
             },
             setQueryParams() {
-                let params = location.search.substr(1).split("&");
+                const searchParams = new URLSearchParams(location.search);
 
                 let formData = new FormData();
                 formData.set("country", "us");
                 formData.set("entity", "album");
                 formData.set("limit", 50);
 
-                for (let param of params) {
-                    let data = param.split("=");
+                for (let param of searchParams.entries()) {
+                    const [name, value] = param;
 
-                    if (data.length == 2) {
-                        switch (data[0]) {
-                            case "q":
-                                formData.set("term", unescape(data[1]));
-                                break;
-                            case "media":
-                            case "entity":
-                            case "country":
-                                formData.set(data[0], data[1]);
-                                break;
-                            case "limit":
-                                let limit = isNaN(data[1]) ? 50 : Math.max(Math.min(data[1], 200), 1);
-                                formData.set("limit", limit);
-                                break;
-                        }
+                    switch (name) {
+                        case "q":
+                            formData.set("term", unescape(value));
+                            break;
+                        case "media":
+                        case "entity":
+                        case "country":
+                            formData.set(name, value);
+                            break;
+                        case "limit":
+                            let limit = isNaN(value) ? 50 : Math.max(Math.min(value, 200), 1);
+                            formData.set("limit", limit);
+                            break;
                     }
                 }
 
