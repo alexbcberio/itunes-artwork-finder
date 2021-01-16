@@ -310,6 +310,35 @@
                 } else {
                     this.$matomo.trackPageView();
                 }
+            },
+            async startServiceWorker() {
+                if (!("serviceWorker" in navigator)) {
+                    console.log("Browser does not support service worker.");
+                    return;
+            }
+
+                const reg = await navigator.serviceWorker.register("./serviceworker.js");
+                let sw;
+
+                if (reg.installing) {
+                    sw = reg.installing;
+                    this.swState("installing");
+                } else if (reg.waiting) {
+                    sw = reg.waiting;
+                    this.swState("waiting");
+                } else if (reg.active) {
+                    sw = reg.active;
+                    this.swState("active");
+                }
+
+                sw.addEventListener("statechange", this.swState);
+            },
+            async swState(e) {
+                if (typeof e !== "string") {
+                    e = e.target.state;
+                }
+
+                console.log(`Service worker status: ${e}`);
             }
         },
         mounted() {
@@ -323,6 +352,7 @@
             window.addEventListener("popstate", this.popstate);
             document.addEventListener("scroll", this.scrollSpy);
 
+            this.startServiceWorker();
             this.trackPageView();
         },
         beforeDestroy() {

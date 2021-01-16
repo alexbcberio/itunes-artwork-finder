@@ -54,13 +54,14 @@ module.exports = {
             filename: './index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: devMode ? '[name].css' : '[name].[hash].css',
-            chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+            filename: '[name].css',
+            chunkFilename: '[id].css',
         }),
         new CopyWebpackPlugin({
             patterns: [
                 { from: "static/manifest.json" },
-                { from: "static/img", to: "img" }
+                { from: "static/img", to: "img" },
+                { from: "src/serviceworker.js" }
             ]
         }),
         new VueLoaderPlugin(),
