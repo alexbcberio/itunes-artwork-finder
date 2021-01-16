@@ -8,19 +8,19 @@ const webpack = require('webpack');
 const path = require("path");
 
 const devMode = !process.argv.includes("--production");
+const outDir = "dist";
 
 module.exports = {
     mode: devMode ? "development" : "production",
     entry: ["./src/index.js", "./src/scss/main.scss"],
     output: {
-        path: path.resolve(__dirname, "docs"),
+        path: path.resolve(__dirname, outDir),
         filename: "app.js"
     },
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: './docs',
+        contentBase: `./${outDir}`,
         hot: true,
-        host: "0.0.0.0",
         port: 8000
     },
     module: {
