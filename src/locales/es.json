@@ -5,9 +5,12 @@
     "terms": {
         "title": "Buscador de artwork de iTunes",
 
+        "locale-label": "Idioma de la página",
+
         "search-iTunes-form": {
             "term-placeholder": "Inserta aquí el término a buscar",
             "country-code": "es",
+            "entity-label": "Tipo de contenido a buscar",
             "result-limit": "Max resultados",
             "submit-text": "Buscar"
         },
@@ -62,6 +65,6 @@
             "accept-button": "Ok"
         },
 
-        "footer": "Creado por <a href=\"https://github.com/{githubUsername}\" target=\"_blank\">{githubUsername}</a>, ver el <a href=\"https://github.com/{githubUsername}/{githubRepoName}\" target=\"_blank\">código fuente</a> en GitHub"
+        "footer": "Creado por <a href=\"https://github.com/{githubUsername}\" target=\"_blank\" rel=\"noreferrer\">{githubUsername}</a>, ver el <a href=\"https://github.com/{githubUsername}/{githubRepoName}\" target=\"_blank\" rel=\"noreferrer\">código fuente</a> en GitHub"
     }
 }

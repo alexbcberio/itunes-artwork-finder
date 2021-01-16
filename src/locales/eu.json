@@ -5,9 +5,12 @@
     "terms": {
         "title": "iTunesko grafikagintza bilatzailea",
 
+        "locale-label": "Horriaren hizkuntza",
+
         "search-iTunes-form": {
             "term-placeholder": "Jarri hemen bilatzeko terminoa",
             "country-code": "es",
+            "entity-label": "Bilatu nahikoriko edukiera",
             "result-limit": "Gehiengo emaitzak",
             "submit-text": "Bilatu"
         },
@@ -62,6 +65,6 @@
             "accept-button": "Ok"
         },
 
-        "footer": "<a href=\"https://github.com/{githubUsername}\" target=\"_blank\">{githubUsername}</a>k egina, ikusi <a href=\"https://github.com/{githubUsername}/{githubRepoName}\" target=\"_blank\">iturburu kodea</a> GitHub-en"
+        "footer": "<a href=\"https://github.com/{githubUsername}\" target=\"_blank\" rel=\"noreferrer\">{githubUsername}</a>k egina, ikusi <a href=\"https://github.com/{githubUsername}/{githubRepoName}\" target=\"_blank\" rel=\"noreferrer\">iturburu kodea</a> GitHub-en"
     }
 }

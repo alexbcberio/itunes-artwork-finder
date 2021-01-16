@@ -2,19 +2,18 @@
     <div>
         <header>
             <h1 id="title">{{ $t("terms.title") }}</h1>
-
-            <select id="changeLocale" v-model="$i18n.locale">
+            <select id="changeLocale" v-model="$i18n.locale" :aria-label="$t('terms.locale-label')">
                 <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang" :checked="($i18n.locale == lang) ? true : false">{{ $i18n.messages[lang].language }}</option>
             </select>
         </header>
 
         <form action="javascript:" method="post" id="search-iTunes" @submit="submit">
-            <input type="text" name="term" :placeholder="$t('terms.search-iTunes-form.term-placeholder')" :value="formData ? formData.get('term') : ''" autofocus autocomplete="off" spellcheck="false" />
+            <input type="text" name="term" :placeholder="$t('terms.search-iTunes-form.term-placeholder')" :value="formData ? formData.get('term') : ''" autofocus autocomplete="off" spellcheck="false" :aria-label="$t('terms.search-iTunes-form.term-placeholder')" />
 
             <input type="hidden" name="country" :value="formData ? formData.get('country') : $t('terms.search-iTunes-form.country-code')" />
 
             <div class="inline">
-                <select name="entity" :value="formData ? formData.get('entity') : defaults.entity">
+                <select name="entity" :value="formData ? formData.get('entity') : defaults.entity" :aria-label="$t('terms.search-iTunes-form.entity-label')">
                     <optgroup label="Movie">
                         <option value="movieArtist">Movie Artist</option>
                         <option value="movie">Movie</option>
@@ -77,7 +76,7 @@
                     </optgroup>
                 </select>
 
-                <input type="number" name="limit" :value="formData ? formData.get('limit') : defaults.limit" min="1" max="200" :placeholder="$t('terms.search-iTunes-form.result-limit')"/>
+                <input type="number" name="limit" :value="formData ? formData.get('limit') : defaults.limit" min="1" max="200" :placeholder="$t('terms.search-iTunes-form.result-limit')" aria-label="$t('terms.search-iTunes-form.result-limit')" />
             </div>
 
             <button type="submit" name="submit">
@@ -86,20 +85,20 @@
         </form>
 
         <main :style="{display: resultsFound === null ? 'flex' : ''}">
-            <div v-if="resultsFound === null" id="welcome-guide" ve-html="">
+            <div v-if="resultsFound === null" id="welcome-guide">
                 <div class="step-1">
                     <img src="img/pen-icon.svg" alt="Pen icon">
-                    <h3>{{ $t("terms.welcome-guide.step-1.title") }}</h3>
+                    <h2>{{ $t("terms.welcome-guide.step-1.title") }}</h2>
                     <p>{{ $t("terms.welcome-guide.step-1.text") }}</p>
                 </div>
                 <div class="step-2">
                     <img src="img/search-icon.svg" alt="Search icon">
-                    <h3>{{ $t("terms.welcome-guide.step-2.title") }}</h3>
+                    <h2>{{ $t("terms.welcome-guide.step-2.title") }}</h2>
                     <p>{{ $t("terms.welcome-guide.step-2.text") }}</p>
                 </div>
                 <div class="step-3">
                     <img src="img/image-file-icon.svg" alt="Image file icon">
-                    <h3>{{ $t("terms.welcome-guide.step-3.title") }}</h3>
+                    <h2>{{ $t("terms.welcome-guide.step-3.title") }}</h2>
                     <p>{{ $t("terms.welcome-guide.step-3.text") }}</p>
                 </div>
             </div>
@@ -315,7 +314,7 @@
                 if (!("serviceWorker" in navigator)) {
                     console.log("Browser does not support service worker.");
                     return;
-            }
+                }
 
                 const reg = await navigator.serviceWorker.register("./serviceworker.js");
                 let sw;

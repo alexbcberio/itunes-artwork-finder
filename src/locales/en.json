@@ -5,9 +5,12 @@
     "terms": {
         "title": "iTunes artwork finder",
 
+        "locale-label": "Page locale",
+
         "search-iTunes-form": {
             "term-placeholder": "Write here what you want to search for",
             "country-code": "us",
+            "entity-label": "Type of content to search for",
             "result-limit": "Max results",
             "submit-text": "Search"
         },
@@ -62,6 +65,6 @@
             "accept-button": "Ok"
         },
 
-        "footer": "Made by <a href=\"https://github.com/{githubUsername}\" target=\"_blank\">{githubUsername}</a>, view the <a href=\"https://github.com/{githubUsername}/{githubRepoName}\" target=\"_blank\">source code</a> on GitHub"
+        "footer": "Made by <a href=\"https://github.com/{githubUsername}\" target=\"_blank\" rel=\"noreferrer\">{githubUsername}</a>, view the <a href=\"https://github.com/{githubUsername}/{githubRepoName}\" target=\"_blank\" rel=\"noreferrer\">source code</a> on GitHub"
     }
 }

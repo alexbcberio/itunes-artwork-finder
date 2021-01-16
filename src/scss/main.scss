@@ -137,6 +137,10 @@ noscript {
     & > div {
         margin: auto;
         padding: 0px 2rem;
+
+        & > h2 {
+            font-size: 1.15rem;
+        }
     }
 
     img {
