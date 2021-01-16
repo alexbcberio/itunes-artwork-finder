@@ -1,5 +1,6 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -71,5 +72,13 @@ module.exports = {
         alias: {
             'vue$': 'vue/dist/vue.common.js'
         }
+    },
+    optimization: {
+        minimize: !devMode,
+        minimizer: [
+            new CssMinimizerPlugin({
+                sourceMap: devMode
+            })
+        ]
     }
 };
