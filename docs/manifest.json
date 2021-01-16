@@ -1,8 +1,10 @@
 {
     "name": "iTunes Artwork Finder",
-    "start_url": ".",
+    "short_name": "ArtworkFinder",
+    "start_url": "./",
     "display": "standalone",
-    "background_color": "#546e7a",
+    "theme_color": "#546e7a",
+    "background_color": "#333333",
     "description": "Tool to get artwork from the iTunes public API.",
     "icons": [{
         "src": "./img/icon64.png",
