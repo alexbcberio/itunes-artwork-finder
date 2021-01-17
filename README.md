@@ -24,7 +24,9 @@ or with npm
 > npm install
 ```
 
-Then run this to start compiling in watch mode `yarn watch` or `npm run watch`, if you also want to start a webserver locally `yarn open` or `npm run open` (if you don't want to automatically open it on the browser use the `serve` script).
+Then run this to start compiling in watch mode `yarn watch` or `npm run watch`, if you also want to start a webserver locally `yarn serve` or `npm run serve` this will start a [browser-sync](https://classic.yarnpkg.com/en/package/browser-sync) webserver where all interactions are synched between sessions.
+
+You can access the non browser-sync server from the port `8001`.
 
 ## Building for production use
 

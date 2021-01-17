@@ -1,6 +1,8 @@
 {
     "name": "itunes-artwork-finder",
     "devDependencies": {
+        "browser-sync": "^2.26.13",
+        "browser-sync-webpack-plugin": "^2.3.0",
         "clean-webpack-plugin": "^3.0.0",
         "copy-webpack-plugin": "^7.0.0",
         "cross-env": "^7.0.3",
@@ -22,8 +24,7 @@
     "scripts": {
         "build": "cross-env NODE_ENV=production webpack",
         "watch": "cross-env NODE_ENV=development webpack --watch",
-        "serve": "cross-env NODE_ENV=development webpack serve",
-        "open": "cross-env NODE_ENV=development webpack serve --open"
+        "serve": "cross-env NODE_ENV=development webpack serve"
     },
     "dependencies": {
         "animate.css": "^4.1.1",

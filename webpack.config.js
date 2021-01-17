@@ -1,3 +1,4 @@
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
@@ -6,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
 const path = require("path");
+
 
 const devMode = process.env.NODE_ENV === "development";
 const outDir = "docs";
@@ -21,8 +23,9 @@ const webpackConfig = {
         compress: true,
         contentBase: `./${outDir}`,
         hot: true,
+        open: false,
         overlay: true,
-        port: 8000
+        port: 8001
     },
     module: {
         rules: [
@@ -61,7 +64,7 @@ const webpackConfig = {
             ]
         }),
         new VueLoaderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
         alias: {
@@ -80,6 +83,17 @@ const webpackConfig = {
 
 if (devMode) {
     webpackConfig.devtool = "inline-source-map";
+
+    if (!process.argv.includes("--watch")) {
+        const browserSync = new BrowserSyncPlugin({
+            host: "localhost",
+            port: "8000",
+            proxy: "http://localhost:8001"
+        }, {
+            reload: false
+        });
+        webpackConfig.plugins.push(browserSync);
+    }
 }
 
 module.exports = webpackConfig;
