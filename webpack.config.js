@@ -17,7 +17,7 @@ module.exports = {
         path: path.resolve(__dirname, outDir),
         filename: "app.js"
     },
-    devtool: 'inline-source-map',
+    devtool: devMode ? 'inline-source-map' : '',
     devServer: {
         contentBase: `./${outDir}`,
         hot: true,
