@@ -18,8 +18,10 @@ const webpackConfig = {
         filename: "app.js"
     },
     devServer: {
+        compress: true,
         contentBase: `./${outDir}`,
         hot: true,
+        overlay: true,
         port: 8000
     },
     module: {

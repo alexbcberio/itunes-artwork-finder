@@ -20,10 +20,10 @@
         "webpack-dev-server": "^3.11.2"
     },
     "scripts": {
-        "build": "webpack",
+        "build": "cross-env NODE_ENV=production webpack",
         "watch": "cross-env NODE_ENV=development webpack --watch",
-        "serve": "cross-env NODE_ENV=development webpack-dev-server",
-        "open": "cross-env NODE_ENV=development webpack-dev-server --open"
+        "serve": "cross-env NODE_ENV=development webpack serve",
+        "open": "cross-env NODE_ENV=development webpack serve --open"
     },
     "dependencies": {
         "animate.css": "^4.1.1",
