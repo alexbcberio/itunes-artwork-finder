@@ -1,14 +1,4 @@
-import Vue from "vue";
-
-Vue.component('ResultItem', {
-  props: ['result'],
-  methods: {
-    emitPreview: function(e) {
-      e.preventDefault();
-      this.$emit('preview', this.result.collectionName, e.target.href);
-    }
-  },
-  template: `
+<template>
   <div class="collectionElement">
         <p class="collection-name">{{ result.collectionName }}</p>
         <div class="albumart-download-links">
@@ -17,5 +7,16 @@ Vue.component('ResultItem', {
         </div>
         <img :src="result.artworkUrl60.replace('60x60', '300x300')" class="albumart" />
     </div>
-  `
-});
+</template>
+
+<script>
+export default {
+  props: ['result'],
+  methods: {
+    emitPreview: function(e) {
+      e.preventDefault();
+      this.$emit('preview', this.result.collectionName, e.target.href);
+    }
+  }
+}
+</script>

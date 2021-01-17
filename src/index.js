@@ -3,18 +3,30 @@
 import Vue from "vue";
 import VueI18n from 'vue-i18n';
 import VueMatomo from 'vue-matomo';
+import appView from "./app.vue";
 
 import en from "./locales/en.json";
 import es from "./locales/es.json";
 import eu from "./locales/eu.json";
 
-import App from "./app.vue";
+const components = require.context(
+    "./components",
+    true,
+    /[A-Z]\w+\.vue$/
+);
 
-import AnalyticsConsent from "./components/AnalyticsConsent";
-import Loader from "./components/Loader";
-import Overlay from "./components/Overlay";
-import OverlayImage from "./components/OverlayImage";
-import ResultItem from "./components/ResultItem";
+components.keys().forEach(filename => {
+    const config = components(filename);
+    const componentName = filename
+        .split("/")
+        .pop()
+        .replace(/\.\w+$/, "");
+
+    Vue.component(
+        componentName,
+        config.default || config
+    )
+});
 
 Vue.use(VueI18n);
 
@@ -41,8 +53,5 @@ const app = new Vue({
     i18n,
     el: "#app",
 
-    template: "<app/>",
-    components: {
-        app: App
-    }
+    render: h => h(appView)
 });

@@ -1,6 +1,14 @@
-import Vue from "vue";
+<template>
+  <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" @before-enter="visible = true" @after-leave="visible = false">
+    <overlay :title="title" :listenKeyboard=true @close="$emit('close')">
+      <loader v-if="!imgPreloaded" />
+      <img v-else class="artwork" :src="src" draggable="false" :title="$t('terms.iTunes-search.download-image.download')" @click="downloadImage" />
+    </overlay>
+  </transition>
+</template>
 
-Vue.component('OverlayImage', {
+<script>
+export default {
   props: [
     "src",
     "title"
@@ -50,13 +58,6 @@ Vue.component('OverlayImage', {
       this.imgPreloaded = false;
       this.preloadImage();
     }
-  },
-  template: `
-  <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut" @before-enter="visible = true" @after-leave="visible = false">
-    <overlay :title="title" :listenKeyboard=true @close="$emit('close')">
-      <loader v-if="!imgPreloaded" />
-      <img v-else class="artwork" :src="src" draggable="false" :title="$t('terms.iTunes-search.download-image.download')" @click="downloadImage" />
-    </overlay>
-  </transition>
-  `
-});
+  }
+}
+</script>

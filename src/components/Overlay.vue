@@ -1,6 +1,19 @@
-import Vue from "vue";
+<template>
+  <div class="overlay" @click="backdropClose">
+    <div class="overlay-header">
+        <span></span>
+        <span v-if="title" class="title">{{ title }}</span>
+        <span v-if="preventClose !== true" class="close" @click="$emit('close')">&times;</span>
+        <span v-else></span>
+    </div>
+    <div class="overlay-content">
+      <slot></slot>
+    </div>
+  </div>
+</template>
 
-Vue.component('Overlay', {
+<script>
+export default {
   props: [
     "title",
     "listenKeyboard",
@@ -36,18 +49,6 @@ Vue.component('Overlay', {
     if (this.listenKeyboard) {
       document.removeEventListener("keydown", this.kbdControls);
     }
-  },
-  template: `
-  <div class="overlay" @click="backdropClose">
-    <div class="overlay-header">
-        <span></span>
-        <span v-if="title" class="title">{{ title }}</span>
-        <span v-if="preventClose !== true" class="close" @click="$emit('close')">&times;</span>
-        <span v-else></span>
-    </div>
-    <div class="overlay-content">
-      <slot></slot>
-    </div>
-  </div>
-  `
-});
+  }
+}
+</script>
