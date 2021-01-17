@@ -66,11 +66,6 @@ const webpackConfig = {
         new VueLoaderPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ],
-    resolve: {
-        alias: {
-            'vue$': 'vue/dist/vue.common.js'
-        }
-    },
     optimization: {
         minimize: !devMode,
         minimizer: [
