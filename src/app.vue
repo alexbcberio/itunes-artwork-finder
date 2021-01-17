@@ -87,17 +87,17 @@
         <main :style="{display: resultsFound === null ? 'flex' : ''}">
             <div v-if="resultsFound === null" id="welcome-guide">
                 <div class="step-1">
-                    <img src="img/pen-icon.svg" alt="Pen icon">
+                    <img :src="icons.penIcon" alt="Pen icon">
                     <h2>{{ $t("terms.welcome-guide.step-1.title") }}</h2>
                     <p>{{ $t("terms.welcome-guide.step-1.text") }}</p>
                 </div>
                 <div class="step-2">
-                    <img src="img/search-icon.svg" alt="Search icon">
+                    <img :src="icons.searchIcon" alt="Search icon">
                     <h2>{{ $t("terms.welcome-guide.step-2.title") }}</h2>
                     <p>{{ $t("terms.welcome-guide.step-2.text") }}</p>
                 </div>
                 <div class="step-3">
-                    <img src="img/image-file-icon.svg" alt="Image file icon">
+                    <img :src="icons.imageFileIcon" alt="Image file icon">
                     <h2>{{ $t("terms.welcome-guide.step-3.title") }}</h2>
                     <p>{{ $t("terms.welcome-guide.step-3.text") }}</p>
                 </div>
@@ -129,12 +129,16 @@
     import NoTermException from "./exception/NoTermException";
     import NoNetworkException from "./exception/NoNetworkException";
 
+    import penIcon from "./img/pen-icon.svg";
+    import searchIcon from "./img/search-icon.svg";
+    import imageFileIcon from "./img/image-file-icon.svg";
+
     let api = new iTunesAPI();
 
     export default {
         data() {
             return {
-                showAnalyticsConsent: !(localStorage.getItem("analyticsConsent")),// || navigator.doNotTrack),
+                showAnalyticsConsent: !localStorage.getItem("analyticsConsent"),
                 displayToTop: false,
                 formData: null,
                 defaults: {
@@ -148,6 +152,11 @@
                     open: false,
                     image: null,
                     title: null
+                },
+                icons: {
+                    penIcon,
+                    searchIcon,
+                    imageFileIcon
                 }
             }
         },
