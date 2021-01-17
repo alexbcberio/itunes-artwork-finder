@@ -11,6 +11,51 @@ body {
     margin: 0;
 }
 
+select {
+    -webkit-appearance: none;
+}
+
+input,
+button,
+select {
+    border: 0;
+    background: transparent;
+    font-size: 1em;
+    padding: .4rem .2rem;
+    transition:
+        border .5s,
+        background .5s;
+    min-width: 6rem;
+
+    &:focus:not(.swal-button) {
+        outline: 0;
+        background: transparent;
+        border-color: $primaryColor;
+    }
+}
+
+input,
+select {
+    display: block;
+    width: 100%;
+    font-size: 1em;
+    padding: .4rem .2rem;
+    margin-bottom: .4rem;
+    border-bottom: .1rem solid black;
+}
+
+button {
+    border: .1rem solid black;
+    border-radius: .3rem;
+}
+
+button:focus,
+button:hover {
+    background-color: $primaryColor;
+    color: white;
+    cursor: pointer;
+}
+
 a {
     color: $lightSchemeColor;
 }

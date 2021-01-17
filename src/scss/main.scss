@@ -8,51 +8,6 @@
 @import "loader";
 @import "overlay";
 
-select {
-    -webkit-appearance: none;
-}
-
-input,
-button,
-select {
-    border: 0;
-    background: transparent;
-    font-size: 1em;
-    padding: .4rem .2rem;
-    transition:
-        border .5s,
-        background .5s;
-    min-width: 6rem;
-
-    &:focus:not(.swal-button) {
-        outline: 0;
-        background: transparent;
-        border-color: $primaryColor;
-    }
-}
-
-input,
-select {
-    display: block;
-    width: 100%;
-    font-size: 1em;
-    padding: .4rem .2rem;
-    margin-bottom: .4rem;
-    border-bottom: .1rem solid black;
-}
-
-button {
-    border: .1rem solid black;
-    border-radius: .3rem;
-}
-
-button:focus,
-button:hover {
-    background-color: $primaryColor;
-    color: white;
-    cursor: pointer;
-}
-
 noscript {
     display: block;
     width: 80%;
@@ -65,25 +20,28 @@ noscript {
     color: #721c24;
 }
 
-#title {
-    margin: 0;
-    margin-top: 1.5rem;
-    padding: 1rem 0;
-    text-align: center;
-    font-size: 2rem;
+header {
+    padding: .5rem 0;
+
+    #changeLocale {
+        margin-right: .5rem;
+        margin-left: auto;
+        width: auto;
+        border: .1rem solid black;
+        padding: .25rem;
+    }
+
+    #title {
+        margin: 0;
+        padding: 0 1rem;
+        text-align: center;
+        font-size: 2rem;
+    }
 }
 
-#changeLocale {
-    position: absolute;
-    top: .5rem;
-    right: .5rem;
-    width: auto;
-    border: .1rem solid black;
-    padding: .25rem;
-}
 
 #search-iTunes {
-    width: 90%;
+    padding: 0 5%;
     margin: auto;
 
     $limitSearchWidth: 5rem;
@@ -115,13 +73,13 @@ noscript {
     border-radius: .5rem;
     text-align: center;
     cursor: pointer;
-    background-color: $crolltopBackground;
+    background-color: $scrolltopBackground;
     font-size: 1.2rem;
     box-shadow: 0 0 .5rem black;
     transition: .3s;
 
     &:hover {
-        background-color: opacify($crolltopBackground, .4);
+        background-color: opacify($scrolltopBackground, .4);
     }
 }
 
@@ -242,18 +200,25 @@ noscript {
 }
 
 footer {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
     background-color: $primaryColor;
     color: white;
-    padding: 2.7rem 0 1.5rem 0;
     border-top: .15em solid black;
 
-    a {
-        text-decoration: underline;
-        color: white;
+    p {
+        margin: 0 .5rem;
+        text-align: center;
 
-        &:hover {
-            text-decoration: none;
+        a {
+            text-decoration: underline;
+            color: white;
+
+            &:hover {
+                text-decoration: none;
+            }
         }
     }
 }
@@ -268,7 +233,7 @@ footer {
     input,
     button,
     select,
-    #changeLocale,
+    header #changeLocale,
     #response .collectionElement .albumart-download-link {
         color: $darkSchemeColor;
         border-color: $darkSchemeColor;

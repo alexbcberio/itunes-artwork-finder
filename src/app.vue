@@ -1,10 +1,11 @@
 <template>
     <div>
         <header>
-            <h1 id="title">{{ $t("terms.title") }}</h1>
             <select id="changeLocale" v-model="$i18n.locale" :aria-label="$t('terms.locale-label')">
                 <option v-for="(lang, i) in $i18n.availableLocales" :key="`Lang${i}`" :value="lang" :checked="($i18n.locale == lang) ? true : false">{{ $i18n.messages[lang].language }}</option>
             </select>
+
+            <h1 id="title">{{ $t("terms.title") }}</h1>
         </header>
 
         <form action="javascript:" method="post" id="search-iTunes" @submit="submit">
@@ -119,7 +120,9 @@
 
         <analytics-consent v-if="showAnalyticsConsent" @close="showAnalyticsConsent=false" />
 
-        <footer v-html="$t('terms.footer', { githubUsername: 'alexbcberio', githubRepoName: 'itunes-artwork-finder'})"></footer>
+        <footer>
+            <p v-html="$t('terms.footer', { githubUsername: 'alexbcberio', githubRepoName: 'itunes-artwork-finder'})" />
+        </footer>
     </div>
 </template>
 <script>
@@ -306,11 +309,11 @@
                 this.selectedItem.image = artworkUrl;
             },
             initMainHeight() {
-                const header = document.getElementsByTagName("header")[0].getClientRects()[0].height;
-                const form = document.getElementById("search-iTunes").getClientRects()[0].height;
-                const footer = document.getElementsByTagName("footer")[0].getClientRects()[0].height;
+                const header = document.getElementsByTagName("header")[0].getBoundingClientRect().height;
+                const form = document.getElementById("search-iTunes").getBoundingClientRect().height;
+                const footer = document.getElementsByTagName("footer")[0].getBoundingClientRect().height;
 
-                document.getElementsByTagName("main")[0].style.minHeight = `calc(100vh - ${header + form + footer}px - 1rem)`;
+                document.getElementsByTagName("main")[0].style.minHeight = `calc(100vh - ${header + form + footer}px)`;
             },
             trackPageView() {
                 if (!this.$matomo) {
