@@ -350,6 +350,30 @@
                 }
 
                 console.log(`Service worker status: ${e}`);
+
+                if (e === "redundant") {
+                    const reload = await swal({
+                        title: this.$t("terms.update.title"),
+                        text: this.$t("terms.update.text"),
+                        icon: "info",
+                        buttons: {
+                            cancel: {
+                                text: this.$t("terms.update.cancelButton"),
+                                value: false,
+                                visible: true
+                            },
+                            confirm: {
+                                text: this.$t("terms.update.confirmButton"),
+                                value: true,
+                                visible: true
+                            }
+                        }
+                    });
+
+                    if (reload) {
+                        location.reload();
+                    }
+                }
             }
         },
         mounted() {

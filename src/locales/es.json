@@ -64,6 +64,13 @@
             "accept-button": "Ok"
         },
 
+        "update": {
+            "title": "Actualización instalada",
+            "text": "¿Recargar la página para acceder a las nuevas funciones?",
+            "cancelButton": "Cancelar",
+            "confirmButton": "Aceptar"
+        },
+
         "footer": "Creado por <a href=\"https://github.com/{githubUsername}\" target=\"_blank\" rel=\"noreferrer\">{githubUsername}</a>, ver el <a href=\"https://github.com/{githubUsername}/{githubRepoName}\" target=\"_blank\" rel=\"noreferrer\">código fuente</a> en GitHub"
     }
 }

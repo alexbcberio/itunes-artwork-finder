@@ -64,6 +64,14 @@
             "accept-button": "Ok"
         },
 
+        "update": {
+            "title": "Aplikazioa egunaratua",
+            "text": "Kargatu eguneratuko bertsioa ezaugarri berrieak erabiltzeko?",
+            "cancelButton": "Ezeztatu",
+            "confirmButton": "Onartu"
+        },
+
+
         "footer": "<a href=\"https://github.com/{githubUsername}\" target=\"_blank\" rel=\"noreferrer\">{githubUsername}</a>k egina, ikusi <a href=\"https://github.com/{githubUsername}/{githubRepoName}\" target=\"_blank\" rel=\"noreferrer\">iturburu kodea</a> GitHub-en"
     }
 }
