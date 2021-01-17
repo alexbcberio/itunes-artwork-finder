@@ -1,5 +1,4 @@
 {
-    "code": "es",
     "language": "Español - Spanish",
 
     "terms": {
@@ -60,7 +59,7 @@
             "body": "Con el fin de ofrecer un mejor servicio nos gustaría analizar cómo utilizas este servicio. Pero antes nos gustaría contar con tu consentimiento.",
             "let-us": "¿Nos lo permites?",
             "show-more-info": "Más infomación",
-            "more-info": "Antes de nada recalcar que ninguna información será accedida por terceras partes. Utilizamos <a href=\"https://matomo.org/\" target=\"_blank\">Matomo</a>, un servicio alternativo a Google Analytics, de esta forma respetamos al máximo vuestra privacidad. Recolectamos la siguiente información:<ul><li>Dirección IP: la dirección IP con la que has accedido a la web, los últimos 2 bytes son eliminados. Es decir 192.168.1.152 se convierte en 192.168.0.0</li><li>Navegador, Sistema Operativo y resolución de pantalla: esta información es automáticamente enviada por tu navegador de internet. Con esto podemos saber desde qué tipo de dispositivo has accedido: PC, teléfono inteligente, TV, etc.</li><li>Idioma principal del navegador: con el fin de saber en qué pais te encuentras (no geolocalizamos la dirección IP) además gracias a esta información podrémos considerar la posibilidad de traducir el sitio web a tu idioma.</li></ul>Utilizamos cookies para guardar algunas preferencias. Si quieres saber más <a href=\"mailto:{mail}?subject=Consulta acerca de iTunes-artwork-search\">mándame un e-mail</a>.",
+            "more-info": "Antes de nada recalcar que ninguna información será accedida por terceras partes. Utilizamos <a href=\"https://matomo.org/\" target=\"_blank\" rel=\"noreferrer\">Matomo</a>, un servicio alternativo a Google Analytics, de esta forma respetamos al máximo vuestra privacidad. Recolectamos la siguiente información:<ul><li>Dirección IP: la dirección IP con la que has accedido a la web, los últimos 2 bytes son eliminados. Es decir 192.168.1.152 se convierte en 192.168.0.0</li><li>Navegador, Sistema Operativo y resolución de pantalla: esta información es automáticamente enviada por tu navegador de internet. Con esto podemos saber desde qué tipo de dispositivo has accedido: PC, teléfono inteligente, TV, etc.</li><li>Idioma principal del navegador: con el fin de saber en qué pais te encuentras (no geolocalizamos la dirección IP) además gracias a esta información podrémos considerar la posibilidad de traducir el sitio web a tu idioma.</li></ul>Utilizamos cookies para guardar algunas preferencias. Si quieres saber más <a href=\"mailto:{mail}?subject=Consulta acerca de iTunes-artwork-search\">mándame un e-mail</a>.",
             "deny-button": "No enviar información",
             "accept-button": "Ok"
         },

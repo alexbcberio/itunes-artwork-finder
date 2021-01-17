@@ -5,10 +5,6 @@ import VueI18n from 'vue-i18n';
 import VueMatomo from 'vue-matomo';
 import appView from "./app.vue";
 
-import en from "./locales/en.json";
-import es from "./locales/es.json";
-import eu from "./locales/eu.json";
-
 const components = require.context(
     "./components",
     true,
@@ -38,14 +34,28 @@ Vue.use(VueMatomo, {
     hearBeatTimerInterval: 60
 });
 
-const messages = {
-    en,
-    es,
-    eu
-}
+const locales = require.context(
+	"./locales",
+	false,
+	/[a-z]{2}\.json$/
+);
+const messages = {}
+
+locales.keys().forEach(locale => {
+	const filename = locale
+		.split("/")
+		.pop()
+		.replace(/\.json/, "");
+
+	messages[filename] = {
+		...locales(locale),
+		...{ code: filename }
+	};
+});
 
 const i18n = new VueI18n({
     locale: 'en',
+    fallbackLocale: 'en',
     messages,
 });
 
