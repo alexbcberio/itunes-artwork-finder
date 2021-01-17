@@ -8,7 +8,6 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
 const path = require("path");
 
-
 const devMode = process.env.NODE_ENV === "development";
 const outDir = "docs";
 
@@ -17,7 +16,37 @@ const webpackConfig = {
     entry: ["./src/index.js", "./src/scss/main.scss"],
     output: {
         path: path.resolve(__dirname, outDir),
-        filename: "app.js"
+        filename: "app.js",
+        publicPath: "",
+        assetModuleFilename: (pathData) => {
+            const request = pathData.module.request.replace(/\\/g, "/");
+            const extension = request
+                .split(".")
+                .pop();
+
+            let contentType;
+            switch(extension.toLowerCase()) {
+                case "otf":
+                case "ttf":
+                case "woff":
+                case "woff2":
+                    contentType = "fonts";
+                    break;
+                case "apng":
+                case "gif":
+                case "jpeg":
+                case "jpg":
+                case "png":
+                case "svg":
+                case "webp":
+                    contentType = "images";
+                    break;
+                default:
+                    contentType = "other";
+            }
+
+            return `assets/${contentType}/[name][ext]`;
+        }
     },
     devServer: {
         compress: true,
@@ -42,6 +71,9 @@ const webpackConfig = {
                 options: {
                     hotReload: devMode
                 }
+            }, {
+                test: /\.(woff2?|svg)$/i,
+                type: 'asset/resource'
             }
         ],
     },
@@ -59,7 +91,7 @@ const webpackConfig = {
         new CopyWebpackPlugin({
             patterns: [
                 { from: "static/manifest.json" },
-                { from: "static/img", to: "img" },
+                { from: "static/img/", to: "assets/images" },
                 { from: "src/serviceworker.js" }
             ]
         }),

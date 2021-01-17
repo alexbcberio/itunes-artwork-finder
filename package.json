@@ -1,6 +1,7 @@
 {
     "name": "itunes-artwork-finder",
     "devDependencies": {
+        "@fontsource/roboto": "^4.1.0",
         "browser-sync": "^2.26.13",
         "browser-sync-webpack-plugin": "^2.3.0",
         "clean-webpack-plugin": "^3.0.0",
