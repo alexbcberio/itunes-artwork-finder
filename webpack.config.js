@@ -8,7 +8,7 @@ const webpack = require('webpack');
 const path = require("path");
 
 const devMode = process.env.NODE_ENV === "development";
-const outDir = "dist";
+const outDir = "docs";
 
 const webpackConfig = {
     mode: devMode ? "development" : "production",
