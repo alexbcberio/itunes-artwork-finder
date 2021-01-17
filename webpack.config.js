@@ -7,17 +7,16 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
 const path = require("path");
 
-const devMode = !process.argv.includes("--production");
+const devMode = process.env.NODE_ENV === "development";
 const outDir = "dist";
 
-module.exports = {
+const webpackConfig = {
     mode: devMode ? "development" : "production",
     entry: ["./src/index.js", "./src/scss/main.scss"],
     output: {
         path: path.resolve(__dirname, outDir),
         filename: "app.js"
     },
-    devtool: devMode ? 'inline-source-map' : '',
     devServer: {
         contentBase: `./${outDir}`,
         hot: true,
@@ -28,13 +27,7 @@ module.exports = {
             {
                 test: /\.(sa|sc|c)ss$/i,
                 use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            hmr: devMode,
-                            reloadAll: true,
-                        },
-                    },
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader',
                 ],
@@ -42,7 +35,7 @@ module.exports = {
                 test: /\.vue$/i,
                 loader: 'vue-loader',
                 options: {
-                    hotReload: true
+                    hotReload: devMode
                 }
             }
         ],
@@ -82,3 +75,9 @@ module.exports = {
         ]
     }
 };
+
+if (devMode) {
+    webpackConfig.devtool = "inline-source-map";
+}
+
+module.exports = webpackConfig;
