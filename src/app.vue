@@ -8,13 +8,14 @@
             <h1 id="title">{{ $t("terms.title") }}</h1>
         </header>
 
-        <form action="javascript:" method="post" id="search-iTunes" @submit="submit">
+        <form action="javascript:" method="post" id="search-iTunes" @submit="submit" ref="form">
             <input type="text" name="term" :placeholder="$t('terms.search-iTunes-form.term-placeholder')" :value="formData ? formData.get('term') : ''" autofocus autocomplete="off" spellcheck="false" :aria-label="$t('terms.search-iTunes-form.term-placeholder')" />
 
             <input type="hidden" name="country" :value="formData ? formData.get('country') : $t('terms.search-iTunes-form.country-code')" />
+            <input type="hidden" name="offset" :value="numResults" />
 
             <div class="inline">
-                <select name="entity" :value="formData ? formData.get('entity') : defaults.entity" :aria-label="$t('terms.search-iTunes-form.entity-label')">
+                <select name="entity" :value="formData ? formData.get('entity') : defaults.entity" :aria-label="$t('terms.search-iTunes-form.entity-label')" ref="entity">
                     <optgroup label="Movie">
                         <option value="movieArtist">Movie Artist</option>
                         <option value="movie">Movie</option>
@@ -104,12 +105,15 @@
                 </div>
             </div>
             <div id="response">
-                <p v-if="!searching && resultsFound === false" class="not-found">{{ $t("terms.iTunes-search.not-found") }}</p>
+                <p v-if="!searching && resultsFound === false && results.length === 0" class="not-found">{{ $t("terms.iTunes-search.not-found") }}</p>
                 <result-item v-for="(result, i) in results" :key="i" :result="result" @preview="previewItem" />
 
                 <div style="width: 100%; height: 1rem;"></div>
 
                 <loader v-if="searching"/>
+                <a href="javascript:" id="loadMore" v-if="results.length > 0 && !searching && resultsFound" @click="loadMore" ref="loadMore">
+                    {{ $t("terms.load-more") }}
+                </a>
             </div>
             <div id="scrollTop" v-if="displayToTop && !selectedItem.open" @click="toTop()">
                 ↑
@@ -150,6 +154,7 @@
                 },
                 searching: false,
                 results: [],
+                numResults: 0,
                 resultsFound: null,
                 selectedItem: {
                     open: false,
@@ -171,7 +176,11 @@
         },
         methods: {
             scrollSpy() {
-                this.displayToTop = document.getElementById("search-iTunes").getBoundingClientRect().bottom <= 0;
+                this.displayToTop = this.$refs.form.getBoundingClientRect().bottom <= 0;
+
+                if (this.$refs.loadMore && window.innerHeight - this.$refs.loadMore.getBoundingClientRect().bottom > - 100) {
+                    this.loadMore();
+                }
             },
             toTop() {
                 document.body.scrollIntoView({behavior: "smooth"});
@@ -192,11 +201,13 @@
 
                 return undefined;
             },
-            submit(e) {
-                let formData = new FormData(e.target);
-                formData.set("media", e.target.querySelector("[name=entity]").selectedOptions[0].parentNode.getAttribute("label").toLowerCase());
+            async submit(e) {
+                const formData = new FormData(this.$refs.form);
+                formData.set("media", this.$refs.entity.selectedOptions[0].parentNode.getAttribute("label").toLowerCase());
+                formData.set("offset", 0);
 
                 this.results.splice(0);
+                this.numResults = 0;
 
                 history.pushState({
                     "term": formData.get("term"),
@@ -206,9 +217,11 @@
                     "limit": isNaN(formData.get("limit")) ? 50 : Math.max(Math.min(formData.get("limit"), 200), 1)
                 }, document.title, `?q=${encodeURIComponent(formData.get("term"))}&country=${encodeURIComponent(formData.get("country"))}&entity=${encodeURIComponent(formData.get("entity"))}&limit=${encodeURIComponent(formData.get("limit"))}`);
 
-                this.search(formData);
+                const results = await this.search(formData);
+                this.results.push.apply(this.results, results);
             },
             async search(formData) {
+                const results = [];
                 this.formData = formData;
 
                 try {
@@ -220,9 +233,28 @@
                         this.$matomo.trackSiteSearch(formData.get("term"), formData.get("entity"), res.resultCount);
                     }
 
-                    if (res && res.resultCount > 0) {
-                        this.resultsFound = true;
-                        this.results.push.apply(this.results, res.results);
+                    if (res) {
+                        this.numResults += res.resultCount;
+                        if (this.results.length === 0) {
+
+                            if (res.resultCount === 0) {
+                                this.resultsFound = false;
+
+                            } else if (res.resultCount <= parseInt(formData.get("limit"))) {
+                                this.resultsFound = true;
+                            }
+
+                            results.push.apply(results, res.results);
+
+                        } else {
+                            const currentArtworks = this.results.map(r => r.artworkUrl60);
+                            for (const result of res.results) {
+                                if (!currentArtworks.includes(result.artworkUrl60)) {
+                                    this.resultsFound = true;
+                                    results.push(result);
+                                }
+                            }
+                        }
                     }
 
                 } catch (e) {
@@ -252,8 +284,13 @@
                     this.searching = false;
                 }
 
+                return results;
             },
-            popstate(e) {
+            async loadMore() {
+                const results = await this.search(new FormData(this.$refs.form));
+                this.results.push.apply(this.results, results);
+            },
+            async popstate(e) {
                 let data = e.state;
                 let formData = new FormData();
 
@@ -263,15 +300,17 @@
                 }
 
                 this.results.splice(0);
+                this.numResults = 0;
                 this.searching = true;
 
                 if (formData.get("term")) {
-                    this.search(formData);
+                    const results = await this.search(formData);
+                    this.results.push.apply(this.results, results);
                 } else {
                     this.searching = false;
                 }
             },
-            setQueryParams() {
+            async setQueryParams() {
                 const searchParams = new URLSearchParams(location.search);
 
                 let formData = new FormData();
@@ -292,14 +331,15 @@
                             formData.set(name, value);
                             break;
                         case "limit":
-                            let limit = isNaN(value) ? 50 : Math.max(Math.min(value, 200), 1);
+                            let limit = isNaN(value) ? 50 : Math.max(Math.min(parseInt(value), 200), 1);
                             formData.set("limit", limit);
                             break;
                     }
                 }
 
                 if (formData.get("term")) {
-                    this.search(formData);
+                    const results = await this.search(formData);
+                    this.results.push.apply(this.results, results);
                 }
             },
             previewItem(title, artworkUrl) {
@@ -376,19 +416,19 @@
                 }
             }
         },
-        mounted() {
+        async mounted() {
             this.setFirstMatchLocale();
             this.initMainHeight();
-
-            if (location.search) {
-                this.setQueryParams();
-            }
 
             window.addEventListener("popstate", this.popstate);
             document.addEventListener("scroll", this.scrollSpy);
 
             this.startServiceWorker();
             this.trackPageView();
+
+            if (location.search) {
+                await this.setQueryParams();
+            }
         },
         beforeDestroy() {
             window.removeEventListener("popstate", this.popstate);

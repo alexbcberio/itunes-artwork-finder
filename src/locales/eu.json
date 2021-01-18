@@ -54,6 +54,8 @@
             }
         },
 
+        "load-more": "Emaitza gehiago ikustarazi",
+
         "analytics-consent": {
             "title": "Analiketen onarpena",
             "body": "Zerbitzu hobe bat eskaintzeko zure ibilketa analizatzea gustatuko litzaiguke, baina lehenik zure baimenarekin kontatzea gustatuko litzaiguke.",

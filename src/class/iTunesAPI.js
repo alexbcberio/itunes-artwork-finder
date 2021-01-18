@@ -21,21 +21,22 @@ export default class iTunesAPI {
         } else if (!formData.get("term")) {
             throw new NoTermException();
         } else {
-            return await this.fetch(formData, {
-                mode: "no-cors"
-            });
+            return await this.fetch(formData);
         }
     }
 
     async fetch(formData) {
-        let URI = `${this.constructor.apiEndpoint}?term=${formData.get("term")}&country=${formData.get("country")}&media=${formData.get("media")}&entity=${formData.get("entity")}&limit=${formData.get("limit")}`;
+        let URI = `${this.constructor.apiEndpoint}?`;
+        for (const key of formData.keys()) {
+            if (key && formData.get(key)) {
+                URI += `${key}=${formData.get(key)}&`;
+            }
+        }
 
-        let response = await fetch(URI);
+        const response = await fetch(URI);
 
         if (response.ok) {
-            let json = await response.json();
-
-            return json;
+            return await response.json();
 
         } else {
             throw {
@@ -44,6 +45,6 @@ export default class iTunesAPI {
                 httpResponse: response.statusText
             };
         }
-
     }
+
 }

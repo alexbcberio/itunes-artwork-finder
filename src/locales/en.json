@@ -54,6 +54,8 @@
             }
         },
 
+        "load-more": "Load more results",
+
         "analytics-consent": {
             "title": "Analytics Consent",
             "body": "We would like to analyze how you use this service, first we want to make sure you are right with it.",

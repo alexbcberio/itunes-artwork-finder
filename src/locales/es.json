@@ -54,6 +54,8 @@
             }
         },
 
+        "load-more": "Cargar más resultados",
+
         "analytics-consent": {
             "title": "Consentimiento de Analíticas",
             "body": "Con el fin de ofrecer un mejor servicio nos gustaría analizar cómo utilizas este servicio. Pero antes nos gustaría contar con tu consentimiento.",
