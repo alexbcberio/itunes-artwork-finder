@@ -4,15 +4,7 @@ const cachedFiles = [
   "./",
   "./app.js",
   "./main.css",
-  "https://fonts.googleapis.com/css?family=Roboto",
-  "./manifest.json",
-  "./img/favicon.png",
-  "./img/icon128.png",
-  "./img/icon256.png",
-  "./img/icon512.png",
-  "./img/image-file-icon.svg",
-  "./img/pen-icon.svg",
-  "./img/search-icon.svg"
+  "./manifest.json"
 ];
 
 function log(txt) {
@@ -54,7 +46,14 @@ self.addEventListener("activate", e => {
   );
 });
 
+let assetsLocation;
 self.addEventListener("fetch", e => {
+  if (!assetsLocation) {
+    let url = new URL(location.href);
+    let thisFilename = url.pathname.split("/").pop();
+    assetsLocation = `${url.origin}${url.pathname.replace(thisFilename, "")}assets/`;
+  }
+
   e.respondWith(caches.open(cacheVersion)
     .then(async cache => {
       let response = await cache.match(e.request);
@@ -66,12 +65,22 @@ self.addEventListener("fetch", e => {
       }
 
       try {
-        return await fetch(e.request.clone());
+        response = await fetch(e.request.clone());
       } catch (err) {
         log(`Error fetching ${e.request.url}, ${err.message}`);
 
         throw err;
       }
+
+      if (
+        response.ok &&
+        e.request.url.startsWith(assetsLocation)
+      ) {
+        log(`Saved into cache ${e.request.url}`);
+        cache.put(e.request, response.clone());
+      }
+
+      return response;
     })
   );
 });
