@@ -1,12 +1,13 @@
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const JsonMinimizerPlugin = require('json-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require("path");
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const webpack = require('webpack');
-const path = require("path");
 
 const devMode = process.env.NODE_ENV === "development";
 const outDir = "docs";
@@ -101,9 +102,11 @@ const webpackConfig = {
     optimization: {
         minimize: !devMode,
         minimizer: [
+            "...",
             new CssMinimizerPlugin({
                 sourceMap: devMode
-            })
+            }),
+            new JsonMinimizerPlugin()
         ]
     }
 };

@@ -3313,6 +3313,13 @@ jsbn@~0.1.0:
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
 
+json-minimizer-webpack-plugin@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/json-minimizer-webpack-plugin/-/json-minimizer-webpack-plugin-2.1.0.tgz#9f619b9d4c9eb08d6079103a48010711267d4a35"
+  integrity sha512-P5uemM2vFLoB9s1AU7iRkUUtd3Y1jgdm19RE4ufMow44v60+pt8ht9X3f3Uh/bboVW0iPT4/96MgqqHjKRsWUg==
+  dependencies:
+    schema-utils "^3.0.0"
+
 json-parse-better-errors@^1.0.1, json-parse-better-errors@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
