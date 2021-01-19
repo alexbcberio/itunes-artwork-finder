@@ -83,7 +83,8 @@ const webpackConfig = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './src/index.html',
-            filename: './index.html'
+            filename: './index.html',
+            scriptLoading: "defer"
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css',

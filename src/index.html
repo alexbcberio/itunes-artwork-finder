@@ -11,9 +11,27 @@
 </head>
 <body>
     <div id="app"></div>
+    <div id="appLoading">
+        <div>
+            <h1>Loading assets</h1>
+            <div class="loader">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <noscript>
+                Oops, it seems you have JavaScript disabled on your browser. Without it this won't do anything, you will have to enable it to use the service.
+            </noscript>
+        </div>
+    </div>
+    <script>
+        const loading = document.getElementById("appLoading");
+        loading.classList.add("hidden");
 
-    <noscript>
-        Oops, it seems you have JavaScript disabled on your browser. Without it this won't do anything, you will have to enable it to use the service.
-    </noscript>
+        setTimeout(() => {
+            loading.classList.remove("hidden");
+        }, 25);
+    </script>
 </body>
 </html>

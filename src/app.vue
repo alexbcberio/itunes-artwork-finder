@@ -414,6 +414,21 @@
                         location.reload();
                     }
                 }
+            },
+            removePreload() {
+                const loader = document.getElementById("appLoading");
+
+                if (loader) {
+                    if (loader.classList.contains("hidden")) {
+                        loader.remove()
+                        return;
+                    }
+
+                    loader.classList.add("animated", "fadeOut", "faster");
+                    loader.onanimationend = () => {
+                        loader.classList.remove();
+                    }
+                }
             }
         },
         async mounted() {
@@ -429,6 +444,8 @@
             if (location.search) {
                 await this.setQueryParams();
             }
+
+            this.removePreload();
         },
         beforeDestroy() {
             window.removeEventListener("popstate", this.popstate);

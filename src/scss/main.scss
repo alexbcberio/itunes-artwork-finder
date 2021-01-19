@@ -5,8 +5,14 @@
 @import "variables";
 @import "reset";
 
+@import "preload";
+
 @import "loader";
 @import "overlay";
+
+.hidden {
+    display: none !important;
+}
 
 noscript {
     display: block;
