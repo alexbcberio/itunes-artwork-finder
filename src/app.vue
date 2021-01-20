@@ -448,3 +448,8 @@
         }
     }
 </script>
+<style scoped>
+    .loader {
+        width: 100%;
+    }
+</style>
