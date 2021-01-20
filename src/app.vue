@@ -115,9 +115,7 @@
                     {{ $t("terms.load-more") }}
                 </a>
             </div>
-            <div id="scrollTop" v-if="displayToTop && !selectedItem.open" @click="toTop()">
-                ↑
-            </div>
+            <scroll-top v-show="displayToTop && !selectedItem.open" />
         </main>
 
         <overlay-image v-show="selectedItem.open" :title="selectedItem.title" :src="selectedItem.image" @close="selectedItem.open=false" />
@@ -181,9 +179,6 @@
                 if (this.$refs.loadMore && window.innerHeight - this.$refs.loadMore.getBoundingClientRect().bottom > - 100) {
                     this.loadMore();
                 }
-            },
-            toTop() {
-                document.body.scrollIntoView({behavior: "smooth"});
             },
             setFirstMatchLocale() {
                 let userLocales = navigator.languages;
@@ -426,7 +421,7 @@
 
                     loader.classList.add("animated", "fadeOut", "faster");
                     loader.onanimationend = () => {
-                        loader.classList.remove();
+                        loader.remove();
                     }
                 }
             }
