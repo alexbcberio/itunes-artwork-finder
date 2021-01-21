@@ -20,3 +20,18 @@ $loaderAnimBaseDelay: .15s;
 
 $overlayTransparency: .25;
 $overlayHeaderHeight: 2rem;
+
+$schemeBackground: var(--background);
+$schemeColor: var(--color);
+
+:root {
+  --background: #{$lightSchemeBackground};
+  --color: #{$lightSchemeColor};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #{$darkSchemeBackground};
+    --color: #{$darkSchemeColor};
+  }
+}
