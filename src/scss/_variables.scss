@@ -1,25 +1,12 @@
 $primaryColor: #546e7a;
 
-$scrolltopBackground: transparentize($primaryColor, .4);
-
+// light theme (default)
 $lightSchemeBackground: #fff;
 $lightSchemeColor: #000;
 
+// dark theme
 $darkSchemeBackground: #333333;
 $darkSchemeColor: #eeeeee;
-
-/*
- * Loader
- */
-
-$loaderAnimBaseDelay: .15s;
-
-/*
- * Overlay
- */
-
-$overlayTransparency: .25;
-$overlayHeaderHeight: 2rem;
 
 $schemeBackground: var(--background);
 $schemeColor: var(--color);

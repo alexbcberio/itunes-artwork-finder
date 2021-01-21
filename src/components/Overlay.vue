@@ -1,26 +1,49 @@
 <template>
-  <div class="overlay" @click="backdropClose">
+  <div
+    class="overlay"
+    @click="backdropClose"
+  >
     <div class="overlay-header">
-        <span></span>
-        <span v-if="title" class="title">{{ title }}</span>
-        <span v-if="preventClose !== true" class="close" @click="$emit('close')">&times;</span>
-        <span v-else></span>
+      <span />
+      <span
+        class="title"
+        v-if="title"
+        v-text="title"
+        />
+      <span
+      class="close"
+      v-if="preventClose !== true"
+      @click="$emit('close')">
+        &times;
+      </span>
+      <span v-else />
     </div>
     <div class="overlay-content">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: [
-    "title",
-    "listenKeyboard",
-    "preventClose"
-  ],
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    listenKeyboard: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    preventClose: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
   methods: {
-    kbdControls: function(e) {
+    kbdControls(e) {
       switch(e.code) {
         case "Escape":
           if (this.preventClose !== true) {
@@ -29,7 +52,7 @@ export default {
           break;
       }
     },
-    backdropClose: function(e) {
+    backdropClose(e) {
       const itemClassList = e.target.classList;
       if (
         itemClassList.contains("overlay") ||
@@ -52,3 +75,54 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+@import "../scss/variables";
+
+$transparency: .25;
+$headerHeight: 2rem;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: transparentize($color: $lightSchemeBackground, $amount: $transparency);
+
+  .overlay-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .title {
+      font-size: $headerHeight * .6;
+      margin: $headerHeight * .2 0;
+    }
+
+    .close {
+      display: inline-block;
+      width: $headerHeight;
+      font-size: $headerHeight;
+      text-align: center;
+      cursor: pointer;
+      color: $schemeColor;
+    }
+  }
+
+  .overlay-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: calc(100% - #{$headerHeight * 2});
+    overflow: auto;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .overlay {
+    background-color: transparentize($color: $darkSchemeBackground, $amount: $transparency);
+  }
+}
+</style>

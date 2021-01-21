@@ -1,20 +1,39 @@
 <template>
-  <overlay :preventClose=true id="analytics-consent" :title="this.$i18n.t('terms.analytics-consent.title')">
+  <overlay
+    id="analytics-consent"
+    :preventClose=true
+    :title="this.$i18n.t('terms.analytics-consent.title')"
+    >
     <div class="body">
+      <p v-text="$i18n.t('terms.analytics-consent.body')" />
       <p>
-        {{ this.$i18n.t('terms.analytics-consent.body') }}
-      </p>
-      <p>
-        {{ this.$i18n.t('terms.analytics-consent.let-us') }} <a href="javascript:" class="more-info" @click="showMoreInfo = true">{{ this.$i18n.t('terms.analytics-consent.show-more-info') }}</a>
+        {{ this.$i18n.t('terms.analytics-consent.let-us') }}
+        <a
+          href="javascript:"
+          class="more-info"
+          @click="showMoreInfo = true" v-text="$i18n.t('terms.analytics-consent.show-more-info')"
+          />
       </p>
 
       <transition enter-active-class="animated zoomIn">
-        <div class="analytics-details" v-if="showMoreInfo" v-html="$t('terms.analytics-consent.more-info', { mail: 'info@alexbcberio.eus' })"></div>
+        <div
+          class="analytics-details"
+          v-if="showMoreInfo"
+          v-html="$t('terms.analytics-consent.more-info', { mail: 'info@alexbcberio.eus' })"
+          />
       </transition>
 
       <div>
-        <button class="analytics-consent-deny" @click="denyConsent">{{ this.$i18n.t('terms.analytics-consent.deny-button') }}</button>
-        <button class="analytics-consent-accept" @click="acceptConsent">{{ this.$i18n.t('terms.analytics-consent.accept-button') }}</button>
+        <button
+          class="analytics-consent-deny"
+          @click="denyConsent"
+          v-text="$i18n.t('terms.analytics-consent.deny-button')"
+          />
+        <button
+          class="analytics-consent-accept"
+          @click="acceptConsent"
+          v-text="$i18n.t('terms.analytics-consent.accept-button')"
+          />
       </div>
     </div>
   </overlay>
@@ -22,7 +41,7 @@
 
 <script>
 export default {
-  data: function() {
+  data() {
     return {
       showMoreInfo: false
     };
@@ -47,3 +66,23 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+#analytics-consent {
+  .overlay-content .body {
+    max-width: 60%;
+
+    .analytics-details {
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .analytics-consent-deny:hover {
+      background-color: #f44336;
+    }
+
+    .analytics-consent-accept:hover {
+      background-color: #388E3C;
+    }
+  }
+}
+</style>
