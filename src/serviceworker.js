@@ -1,4 +1,4 @@
-const cacheVersion = "2021-01-18.01";
+const cacheVersion = "1.4.0";
 
 const cachedFiles = [
   "./",
