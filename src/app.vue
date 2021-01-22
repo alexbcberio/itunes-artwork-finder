@@ -111,7 +111,7 @@
 						/>
 				</div>
 
-				<button
+				<btn
 					type="submit"
 					name="submit"
 					v-text="$t('terms.search-iTunes-form.submit-text')"
@@ -562,7 +562,6 @@ header {
 	margin: auto;
 
 	input,
-	button,
 	select {
 		color: $schemeColor;
 		border-color: $schemeColor;

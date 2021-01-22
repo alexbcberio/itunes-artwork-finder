@@ -87,6 +87,7 @@ $headerHeight: 2rem;
   left: 0;
   width: 100%;
   height: 100vh;
+  color: $schemeColor;
   background-color: transparentize($color: $lightSchemeBackground, $amount: $transparency);
 
   .overlay-header {
@@ -105,7 +106,6 @@ $headerHeight: 2rem;
       font-size: $headerHeight;
       text-align: center;
       cursor: pointer;
-      color: $schemeColor;
     }
   }
 

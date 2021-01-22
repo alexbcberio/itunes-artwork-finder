@@ -24,12 +24,12 @@
       </transition>
 
       <div>
-        <button
+        <btn
           class="analytics-consent-deny"
           @click="denyConsent"
           v-text="$i18n.t('terms.analytics-consent.deny-button')"
           />
-        <button
+        <btn
           class="analytics-consent-accept"
           @click="acceptConsent"
           v-text="$i18n.t('terms.analytics-consent.accept-button')"
