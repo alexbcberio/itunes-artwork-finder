@@ -561,8 +561,22 @@ header {
 	padding: 1rem 5%;
 	margin: auto;
 
+	select {
+		appearance: none;
+	}
+
 	input,
 	select {
+		display: block;
+		min-width: 6rem;
+		width: 100%;
+		padding: .4rem .2rem;
+		margin-bottom: .4rem;
+		padding: .4rem .2rem;
+		border: 0;
+		border-bottom: .1rem solid;
+		font-size: 1rem;
+		transition: border .5s;
 		color: $schemeColor;
 		border-color: $schemeColor;
 		background-color: $schemeBackground;
@@ -658,7 +672,8 @@ footer {
 		margin: 0 .5rem;
 		text-align: center;
 
-		a {
+		::v-deep a {
+			color: white;
 			text-decoration: underline;
 
 			&:hover {

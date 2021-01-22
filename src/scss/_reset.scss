@@ -13,32 +13,6 @@ body {
 	margin: 0;
 }
 
-select {
-	-webkit-appearance: none;
-}
-
-input,
-select {
-	border: 0;
-	background: transparent;
-	font-size: 1em;
-	padding: .4rem .2rem;
-	transition:
-		border .5s,
-		background .5s;
-	min-width: 6rem;
-}
-
-input,
-select {
-	display: block;
-	width: 100%;
-	font-size: 1em;
-	padding: .4rem .2rem;
-	margin-bottom: .4rem;
-	border-bottom: .1rem solid black;
-}
-
 a {
 	color: $schemeColor;
 }
