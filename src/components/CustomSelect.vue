@@ -142,6 +142,7 @@ $sidesPadding: .5rem;
 
       &:hover {
         background-color: $primaryColor;
+        color: $darkSchemeColor;
       }
     }
   }

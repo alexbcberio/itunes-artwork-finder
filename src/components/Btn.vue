@@ -10,16 +10,19 @@
     padding: .4rem .2rem;
     border: .1rem solid;
 		border-color: $schemeColor;
-	  border-radius: .3rem;
+    border-radius: .3rem;
     background-color: $schemeBackground;
     font-size: 1rem;
     color: $schemeColor;
     cursor: pointer;
-    transition: background .5s;
+    transition:
+      background .2s ease-in,
+      color .2s ease-in;
 
     &:hover,
     &:focus {
       background-color: $primaryColor;
+      color: $darkSchemeColor;
     }
   }
 </style>

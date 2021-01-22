@@ -78,7 +78,7 @@ export default {
 <style lang="scss" scoped>
 @import "../scss/variables";
 
-$transparency: .25;
+$transparency: .1;
 $headerHeight: 2rem;
 
 .overlay {
