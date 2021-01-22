@@ -26,26 +26,15 @@
 				autofocus
 				autocomplete="off"
 				spellcheck="false"
+				v-model="input.term"
 				:placeholder="$t('terms.search-iTunes-form.term-placeholder')"
-				:value="formData ? formData.get('term') : ''"
 				:aria-label="$t('terms.search-iTunes-form.term-placeholder')"
 				/>
-
-			<input
-				type="hidden"
-				name="country"
-				:value="formData ? formData.get('country') : $t('terms.search-iTunes-form.country-code')"
-			/>
-			<input
-				type="hidden"
-				name="offset"
-				:value="numResults"
-			/>
 
 				<div class="inline">
 					<select
 						name="entity"
-						:value="formData ? formData.get('entity') : defaults.entity"
+						v-model="input.entity"
 						:aria-label="$t('terms.search-iTunes-form.entity-label')"
 						ref="entity"
 					>
@@ -116,7 +105,7 @@
 						name="limit"
 						min="1"
 						max="200"
-						:value="formData ? formData.get('limit') : defaults.limit"
+						v-model="input.limit"
 						:placeholder="$t('terms.search-iTunes-form.result-limit')"
 						:aria-label="$t('terms.search-iTunes-form.result-limit')"
 						/>
@@ -210,15 +199,17 @@
 				showLocalesSelector: false,
 				showAnalyticsConsent: !(localStorage.getItem("analyticsConsent") || navigator.doNotTrack),
 				displayToTop: false,
-				formData: null,
-				defaults: {
-					county: "us",
+				input: {
+					term: "",
+					country: "us",
+					media: "music",
 					entity: "album",
-					limit: 20
+					limit: 20,
+					offset: 0,
 				},
 				searching: false,
+				searchInput: {},
 				results: [],
-				numResults: 0,
 				resultsFound: null,
 				selectedItem: {
 					open: false,
@@ -236,6 +227,7 @@
 			"$i18n.locale": function(val, oldVal) {
 				document.title = this.$i18n.messages[val].terms.title;
 				document.documentElement.lang = this.$i18n.messages[val].code;
+				this.input.country = this.$t("terms.search-iTunes-form.country-code")
 			}
 		},
 		methods: {
@@ -267,43 +259,44 @@
 				this.showLocalesSelector = true;
 			},
 			async submit(e) {
-				const formData = new FormData(this.$refs.form);
-
-				formData.set("media", this.$refs.entity.selectedOptions[0].parentNode.getAttribute("label").toLowerCase());
-				formData.set("offset", 0);
-
 				this.results.splice(0);
-				this.numResults = 0;
+				this.input.offset = 0;
 
-				const title = `?q=${encodeURIComponent(formData.get("term"))}
-					&country=${encodeURIComponent(formData.get("country"))}
-					&entity=${encodeURIComponent(formData.get("entity"))}
-					&limit=${encodeURIComponent(formData.get("limit"))}
+				this.input.media = this.$refs.entity.selectedOptions[0].parentNode.getAttribute("label").toLowerCase();
+
+				const title = `?q=${encodeURIComponent(this.input.term)}
+					&country=${encodeURIComponent(this.input.country)}
+					&entity=${encodeURIComponent(this.input.entity)}
+					&limit=${encodeURIComponent(this.input.limit)}
 				`;
 
 				history.pushState({
-					"term": formData.get("term"),
-					"country": formData.get("country"),
-					"media": formData.get("media"),
-					"entity": formData.get("entity"),
-					"limit": formData.get("limit")
+					"term": this.input.term,
+					"country": this.input.country,
+					"media": this.input.media,
+					"entity": this.input.entity,
+					"limit": this.input.limit
 				}, document.title, title);
 
-				const results = await this.search(formData);
+				this.searchInput = JSON.parse(JSON.stringify(this.input));
+				const results = await this.search();
 
 				this.results.push.apply(this.results, results);
 			},
-			async search(formData) {
-				if (formData.has("limit")) {
-					formData.set("limit", Math.max(Math.min(formData.get("limit"), 200), 1));
-				}
+			async search() {
+				this.searchInput.limit = Math.max(Math.min(parseInt(this.searchInput.limit), 200), 1);
 
 				const results = [];
-				this.formData = formData;
 
 				try {
 					this.searching = true;
 					this.resultsFound = false;
+
+					const formData = new FormData();
+
+					for (const key in this.searchInput) {
+						formData.set(key, this.searchInput[key]);
+					}
 
 					const res = await api.search(formData);
 
@@ -312,7 +305,7 @@
 					}
 
 					if (res) {
-						this.numResults += res.resultCount;
+						this.searchInput.offset += res.resultCount;
 
 						if (this.results.length === 0) {
 							if (res.resultCount === 0) {
@@ -367,24 +360,24 @@
 				return results;
 			},
 			async loadMore() {
-				const results = await this.search(new FormData(this.$refs.form));
+				const results = await this.search();
 
 				this.results.push.apply(this.results, results);
 			},
 			async popstate(e) {
 				const data = e.state;
-				const formData = new FormData();
 
-				for (let input in data) {
-					formData.set(input, data[input]);
+				this.input.term = "";
+				for (let key in data) {
+					this.input[key] = data[key];
 				}
 
 				this.results.splice(0);
-				this.numResults = 0;
+				this.input.offset = 0;
 				this.searching = true;
 
-				if (formData.get("term")) {
-					const results = await this.search(formData);
+				if (this.input.term) {
+					const results = await this.search();
 
 					this.results.push.apply(this.results, results);
 
@@ -394,34 +387,30 @@
 			},
 			async setQueryParams() {
 				const searchParams = new URLSearchParams(location.search);
-				const formData = new FormData();
-
-				formData.set("country", this.defaults.country);
-				formData.set("entity", this.defaults.entity);
-				formData.set("limit", this.defaults.limit);
 
 				for (let param of searchParams.entries()) {
 					const [name, value] = param;
 
 					switch (name) {
 						case "q":
-							formData.set("term", unescape(value));
+							this.input.term = decodeURIComponent(value);
 							break;
 						case "media":
 						case "entity":
 						case "country":
-							formData.set(name, value);
+							this.input[name] = value;
 							break;
 						case "limit":
 							if (!isNaN(value)) {
-								formData.set(name, value);
+								this.input[name] = parseInt(value);
 							}
 							break;
 					}
 				}
 
-				if (formData.get("term")) {
-					const results = await this.search(formData);
+				if (this.input.term) {
+					this.searchInput = JSON.parse(JSON.stringify(this.input));
+					const results = await this.search();
 
 					this.results.push.apply(this.results, results);
 				}
