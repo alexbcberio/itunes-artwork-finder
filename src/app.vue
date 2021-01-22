@@ -566,6 +566,11 @@ header {
 		color: $schemeColor;
 		border-color: $schemeColor;
 		background-color: $schemeBackground;
+		outline: 0;
+
+		&:focus {
+			border-color: $primaryColor;
+		}
 	}
 
 	select * {
