@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     browser: true,
+    node: true,
     es2021: true,
   },
   extends: [
@@ -30,6 +31,7 @@ module.exports = {
     "dot-location": ["error", "property"],
     "dot-notation": ["error"],
     eqeqeq: ["error"],
+    // eslint-disable-next-line no-magic-numbers
     "max-classes-per-file": ["error", 1],
     "no-alert": ["error"],
     "no-constructor-return": ["error"],
