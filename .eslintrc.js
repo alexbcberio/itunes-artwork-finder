@@ -14,10 +14,10 @@ module.exports = {
     parser: "@typescript-eslint/parser",
     sourceType: "module",
   },
-  plugins: ["vue", "@typescript-eslint"],
+  plugins: ["vue", "@typescript-eslint", "prettier"],
   rules: {
     "no-promise-executor-return": ["error"],
-    "no-template-curly-in-strings": ["error"],
+    "no-template-curly-in-string": ["error"],
     "require-atomic-updates": ["error"],
     "accessor-pairs": ["error"],
     "array-callback-return": ["error"],
