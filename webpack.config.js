@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const name2mime = require("name2mime");
@@ -19,6 +18,7 @@ const config = {
   },
   output: {
     path: outputPath,
+    clean: true,
     filename: "[name].js",
     publicPath: "",
     assetModuleFilename: (pathData) => {
@@ -58,7 +58,6 @@ const config = {
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "template.html",
       filename: "index.html",

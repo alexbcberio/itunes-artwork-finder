@@ -1,5 +1,10 @@
 {
   "name": "itunes-artwork-finder",
+  "version": "2.0.0",
+  "description": "Search artwork on iTunes using their public API",
+  "repository": "git@github.com:alexbcberio/itunes-artwork-finder.git",
+  "author": "alexbcberio <alexbcberio@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "lint": "eslint",
     "lint-fix": "eslint --fix",
@@ -10,7 +15,6 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
-    "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
