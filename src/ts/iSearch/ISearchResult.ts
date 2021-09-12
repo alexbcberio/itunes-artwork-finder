@@ -10,6 +10,13 @@ export class ISearchResult {
     this._raw = raw;
   }
 
+  // TODO: check if this implementation works for all result types
+  public get uuid(): string {
+    const raw = this._raw;
+
+    return `${raw.artistId}-${raw.collectionId}`;
+  }
+
   public get type(): SearchResultType {
     return this._raw.wrapperType;
   }
