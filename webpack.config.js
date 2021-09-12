@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { resolve } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -53,7 +54,7 @@ const config = {
     ],
   },
   resolve: {
-    extensions: [".ts"],
+    extensions: [".ts", ".js"],
   },
   plugins: [
     new webpack.ProgressPlugin(),
