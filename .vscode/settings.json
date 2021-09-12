@@ -1,5 +1,6 @@
 {
   "editor.rulers": [80],
+  "files.eol": "\n",
 
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
