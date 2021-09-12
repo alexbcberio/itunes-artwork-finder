@@ -1,3 +1,10 @@
 {
-  "name": "itunes-artwork-finder"
+  "name": "itunes-artwork-finder",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^7.17.0",
+    "typescript": "^4.4.3"
+  }
 }

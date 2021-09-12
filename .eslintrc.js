@@ -1,0 +1,60 @@
+module.exports = {
+	env: {
+		browser: true,
+		es2021: true
+	},
+	extends: [
+		"eslint:recommended",
+		"plugin:vue/essential",
+		"plugin:@typescript-eslint/recommended"
+	],
+	parserOptions: {
+		ecmaVersion: 12,
+		parser: "@typescript-eslint/parser",
+		sourceType: "module"
+	},
+	plugins: ["vue", "@typescript-eslint"],
+	rules: {
+		"no-promise-executor-return": ["error"],
+		"no-template-curly-in-strings": ["error"],
+		"require-atomic-updates": ["error"],
+		"accessor-pairs": ["error"],
+		"array-callback-return": ["error"],
+		"class-methods-use-this": ["error"],
+		"consistent-return": ["error"],
+		curly: ["error", "all"],
+		"default-case": ["error"],
+		"default-case-last": ["error"],
+		"default-param-last": ["error"],
+		"dot-location": ["error", "property"],
+		"dot-notation": ["error"],
+		eqeqeq: ["error"],
+		"max-classes-per-file": ["error", 1],
+		"no-alert": ["error"],
+		"no-constructor-return": ["error"],
+		"no-else-return": ["error"],
+		"no-empty-function": ["error"],
+		"no-empty-pattern": ["error"],
+		"no-magic-numbers": ["error"],
+		"no-multi-spaces": ["error"],
+		"no-multi-str": ["error"],
+		"no-new": ["error"],
+		"no-return-assign": ["error"],
+		"no-return-await": ["error"],
+		"no-self-compare": ["error"],
+		"no-unused-expressions": ["error"],
+		"no-useless-concat": ["error"],
+		"no-useless-return": ["error"],
+		"require-await": ["error"],
+		"no-label-var": ["error"],
+		"no-undefined": ["error"],
+		"no-use-before-define": ["error"],
+		"no-duplicate-imports": ["error"],
+		"no-useless-computed-key": ["error"],
+		"no-useless-constructor": ["error"],
+		"no-var": ["error"],
+		"object-shorthand": ["error"],
+		"prefer-const": ["error"],
+		"prefer-template": ["error"]
+	}
+};
