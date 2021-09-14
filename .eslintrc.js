@@ -60,5 +60,6 @@ module.exports = {
     "prefer-const": ["error"],
     "prefer-template": ["error"],
     "prettier/prettier": "error",
+    "linebreak-style": ["error", "unix"],
   },
 };
