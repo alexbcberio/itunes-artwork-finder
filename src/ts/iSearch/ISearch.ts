@@ -1,6 +1,7 @@
 import { ISearchResult } from "./ISearchResult";
 import { ISearchResultCollection } from "./ISearchResultCollection";
 import { SearchConstraints } from "./interfaces/SearchConstraints";
+import { SearchCountryConstraint } from "./enums/SearchCountryConstraint";
 
 export class ISearch {
   private static get API_BASE_URL(): string {
@@ -9,7 +10,7 @@ export class ISearch {
 
   private static get DEFAULT_CONSTRAINTS(): SearchConstraints {
     return {
-      country: "us",
+      country: SearchCountryConstraint["United States of America"],
       lang: "en_us",
       version: "2",
       offset: 0,
