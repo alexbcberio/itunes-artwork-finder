@@ -79,7 +79,7 @@ export class ISearch {
     let searchUrl = this.constructor.API_BASE_URL;
 
     searchUrl += `?term=${encodeURIComponent(term)}`;
-    searchUrl += this.getSearchConstraints();
+    searchUrl += `&${this.getSearchConstraints()}`;
 
     return searchUrl;
   }
