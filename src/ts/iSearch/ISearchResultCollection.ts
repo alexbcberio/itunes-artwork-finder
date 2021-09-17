@@ -1,24 +1,6 @@
 import { ISearchResult } from "./ISearchResult";
-import { SearchConstraints } from "./interfaces/SearchConstraints";
-
 export class ISearchResultCollection {
-  private readonly _term: string;
-  private readonly _searchConstraints: SearchConstraints;
-
   private _results: Map<string, ISearchResult> = new Map();
-
-  constructor(term: string, searchConstraints: SearchConstraints) {
-    this._term = term;
-    this._searchConstraints = searchConstraints;
-  }
-
-  public get term(): string {
-    return this._term;
-  }
-
-  public get searchConstraints(): SearchConstraints {
-    return this._searchConstraints;
-  }
 
   public get isEmpty(): boolean {
     const emptySize = 0;
@@ -44,25 +26,23 @@ export class ISearchResultCollection {
     return results;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
-  public addResults(searchResult: any): void {
-    const resultCount: number = searchResult.resultCount;
-    const results: Array<unknown> = searchResult.results;
-
-    if (typeof this._searchConstraints.offset === "undefined") {
-      this._searchConstraints.offset = 0;
-    }
-
-    this._searchConstraints.offset += resultCount;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public addResults(results: Array<any>): Array<ISearchResult> {
+    const addedResults: Array<ISearchResult> = [];
 
     for (let i = 0; i < results.length; i++) {
-      this.addResult(results[i]);
+      const resultModel = new ISearchResult(results[i]);
+      const added = this.addResult(resultModel);
+
+      if (added) {
+        addedResults.push(resultModel);
+      }
     }
+
+    return addedResults;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
-  private addResult(result: any): boolean {
-    const resultModel = new ISearchResult(result);
+  private addResult(resultModel: ISearchResult): boolean {
     const resultUuid: string = resultModel.uuid;
 
     if (this._results.has(resultUuid)) {
