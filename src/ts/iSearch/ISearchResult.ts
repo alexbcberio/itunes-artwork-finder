@@ -1,8 +1,9 @@
 import { SearchResultKind } from "./enums/SearchResultKind";
 import { SearchResultType } from "./enums/SearchResultType";
 
+// TODO: add getters for all fields
 export class ISearchResult {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _raw: any;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
@@ -10,7 +11,7 @@ export class ISearchResult {
     this._raw = raw;
   }
 
-  // TODO: check if this implementation works for all result types
+  // TODO: does not work for all result types (artistId may be undefined)
   public get uuid(): string {
     const raw = this._raw;
 
