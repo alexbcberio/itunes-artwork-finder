@@ -1,4 +1,5 @@
 import { ISearchResult } from "./ISearchResult";
+
 export class ISearchResultCollection {
   private _results: Map<string, ISearchResult> = new Map();
 
