@@ -1,36 +1,63 @@
 {
+  "_id": "itunes-artwork-finder@2.0.0",
+  "private": true,
   "name": "itunes-artwork-finder",
   "version": "2.0.0",
   "description": "Search artwork on iTunes using their public API",
-  "repository": "git@github.com:alexbcberio/itunes-artwork-finder.git",
-  "author": "alexbcberio <alexbcberio@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alexbcberio/itunes-artwork-finder.git"
+  },
+  "author": {
+    "name": "alexbcberio",
+    "email": "alexbcberio@gmail.com"
+  },
   "license": "MIT",
   "scripts": {
-    "lint": "eslint",
-    "lint-fix": "eslint --fix",
-    "build": "cross-env NODE_ENV=production webpack",
-    "watch": "cross-env NODE_ENV=development webpack --watch",
-    "serve": "cross-env NODE_ENV=development webpack serve",
-    "prepare": "husky install"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "bugs": {
+    "url": "https://github.com/alexbcberio/itunes-artwork-finder/issues"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "register-service-worker": "^1.7.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.31.0",
-    "@typescript-eslint/parser": "^4.31.0",
-    "cross-env": "^7.0.3",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^7.17.0",
-    "html-webpack-plugin": "^5.3.2",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.1.2",
-    "name2mime": "^1.0.1",
-    "prettier": "^2.4.0",
-    "pretty-quick": "^3.1.1",
-    "ts-loader": "^9.2.5",
-    "typescript": "^4.4.3",
-    "webpack": "^5.52.1",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.2.0"
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "@vue/cli": "^4.5.14",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-pwa": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "lint-staged": "^9.5.0",
+    "node-sass": "^4.12.0",
+    "prettier": "^2.2.1",
+    "sass-loader": "^8.0.2",
+    "typescript": "~4.1.5",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
   }
 }

@@ -1,23 +1,22 @@
 module.exports = {
+  root: true,
   env: {
-    browser: true,
     node: true,
-    es2021: true,
   },
   extends: [
-    "eslint:recommended",
     "plugin:vue/essential",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
+    "eslint:recommended",
+    "@vue/typescript/recommended",
+    "@vue/prettier",
+    "@vue/prettier/@typescript-eslint",
   ],
   parserOptions: {
-    ecmaVersion: 12,
-    parser: "@typescript-eslint/parser",
-    sourceType: "module",
+    ecmaVersion: 2020,
   },
-  plugins: ["vue", "@typescript-eslint", "prettier"],
   rules: {
-    "no-promise-executor-return": ["error"],
+    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    // custom rules
     "no-template-curly-in-string": ["error"],
     "require-atomic-updates": ["error"],
     "accessor-pairs": ["error"],
@@ -26,11 +25,11 @@ module.exports = {
     "consistent-return": ["error"],
     curly: ["error", "all"],
     "default-case": ["error"],
-    "default-case-last": ["error"],
     "default-param-last": ["error"],
     "dot-location": ["error", "property"],
     "dot-notation": ["error"],
     eqeqeq: ["error"],
+    // eslint-disable-next-line no-magic-numbers
     "max-classes-per-file": ["error", 1],
     "no-alert": ["error"],
     "no-constructor-return": ["error"],
