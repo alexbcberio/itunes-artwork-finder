@@ -4,7 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    {{ $t("helloWorld") }}
+    <v-btn elevation="2" v-text="$t('helloWorld')" />
     <router-view />
   </div>
 </template>

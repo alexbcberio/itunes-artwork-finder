@@ -1,33 +1,27 @@
 {
-  "_id": "itunes-artwork-finder@2.0.0",
-  "private": true,
   "name": "itunes-artwork-finder",
   "version": "2.0.0",
+  "private": true,
   "description": "Search artwork on iTunes using their public API",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/alexbcberio/itunes-artwork-finder.git"
-  },
   "author": {
     "name": "alexbcberio",
     "email": "alexbcberio@gmail.com"
   },
-  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "bugs": {
-    "url": "https://github.com/alexbcberio/itunes-artwork-finder/issues"
-  },
   "dependencies": {
+    "@mdi/font": "5.9.55",
     "@panter/vue-i18next": "^0.15.2",
     "core-js": "^3.6.5",
     "i18next": "^21.3.2",
     "register-service-worker": "^1.7.1",
+    "roboto-fontface": "*",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vuetify": "^2.4.0",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
@@ -49,17 +43,29 @@
     "lint-staged": "^9.5.0",
     "node-sass": "^4.12.0",
     "prettier": "^2.2.1",
-    "sass-loader": "^8.0.2",
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
     "typescript": "~4.1.5",
-    "vue-template-compiler": "^2.6.11"
+    "vue-cli-plugin-vuetify": "~2.4.3",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.7.0"
+  },
+  "_id": "itunes-artwork-finder@2.0.0",
+  "bugs": {
+    "url": "https://github.com/alexbcberio/itunes-artwork-finder/issues"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
+  "license": "MIT",
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
       "vue-cli-service lint",
       "git add"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alexbcberio/itunes-artwork-finder.git"
   }
 }
