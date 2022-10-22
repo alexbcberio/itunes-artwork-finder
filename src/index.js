@@ -27,7 +27,7 @@ components.keys().forEach(filename => {
 Vue.use(VueI18n);
 
 Vue.use(VueMatomo, {
-    host: "https://matomo.alexbcberio.eus",
+    host: "https://matomo.alexbcberio.com",
     siteId: 3,
     requireConsent: true,
     enableHeartBeatTimer: true,
