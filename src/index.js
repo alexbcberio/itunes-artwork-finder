@@ -30,8 +30,9 @@ Vue.use(VueMatomo, {
     host: "https://matomo.alexbcberio.com",
     siteId: 3,
     requireConsent: true,
+    disableCookies: true,
     enableHeartBeatTimer: true,
-    hearBeatTimerInterval: 60
+    hearBeatTimerInterval: 30,
 });
 
 const locales = require.context(

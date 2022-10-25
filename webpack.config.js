@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const JsonMinimizerPlugin = require('json-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require("path");
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const webpack = require('webpack');
 
 const devMode = process.env.NODE_ENV === "development";
@@ -51,11 +51,15 @@ const webpackConfig = {
     },
     devServer: {
         compress: true,
-        contentBase: `./${outDir}`,
         hot: true,
         open: false,
-        overlay: true,
-        port: 8001
+        port: 8001,
+        static: {
+            directory: `./${outDir}`,
+        },
+        client: {
+            overlay: true,
+        }
     },
     module: {
         rules: [
@@ -98,15 +102,12 @@ const webpackConfig = {
             ]
         }),
         new VueLoaderPlugin(),
-        new webpack.HotModuleReplacementPlugin()
     ],
     optimization: {
         minimize: !devMode,
         minimizer: [
             "...",
-            new CssMinimizerPlugin({
-                sourceMap: devMode
-            }),
+            new CssMinimizerPlugin(),
             new JsonMinimizerPlugin()
         ]
     }
