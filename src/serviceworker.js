@@ -1,4 +1,4 @@
-const cacheVersion = "1.4.1";
+const cacheVersion = "1.4.2";
 
 const cachedFiles = ["./", "./app.js", "./main.css", "./manifest.json"];
 
