@@ -2,6 +2,11 @@
 
 Search for artwork over iTunes using their public API.
 
+> [!IMPORTANT]
+> This repository is no longer maintained.
+>
+> The project has been renamed, rewritten and moved from GitHub. The source code is available [here](https://git.alexbcberio.com/alexbcberio/arsea) and the website can be accessed from [arsea.alexbcberio.com](https://arsea.alexbcberio.com).
+
 ## Accessing the app
 
 You can access to the app from [GitHub pages](https://alexbcberio.github.io/itunes-artwork-finder/) or by downloading the repository and opening the index.html file located in the "dist" directory.
